@@ -48,7 +48,7 @@ namespace BodyBuildingApp.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCustomer(int id, Customer customer)
         {
-            if (id != customer.UserId)
+            if (!id.Equals(customer.UserId))
             {
                 return NotFound();
             }

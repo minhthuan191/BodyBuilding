@@ -30,7 +30,7 @@ namespace BodyBuildingApp.Controllers
 
         // GET: api/Customers/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Customer>> GetCustomer(int id)
+        public async Task<ActionResult<Customer>> GetCustomer(string id)
         {
             var customer = await _context.Customer.FindAsync(id);
 
@@ -46,7 +46,7 @@ namespace BodyBuildingApp.Controllers
         // update
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCustomer(int id, Customer customer)
+        public async Task<IActionResult> PutCustomer(string id, Customer customer)
         {
             if (!id.Equals(customer.UserId))
             {
@@ -87,7 +87,7 @@ namespace BodyBuildingApp.Controllers
 
         // DELETE: api/Customers/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCustomer(int id)
+        public async Task<IActionResult> DeleteCustomer(string id)
         {
             var customer = await _context.Customer.FindAsync(id);
             if (customer == null)
@@ -101,9 +101,9 @@ namespace BodyBuildingApp.Controllers
             return NoContent();
         }
 
-        private bool CustomerExists(int id)
+        private bool CustomerExists(string id)
         {
-            return _context.Customer.Any(e => e.UserId == id);
+            return _context.Customer.Any(e => e.UserId.Equals(id));
         }
     }
 }

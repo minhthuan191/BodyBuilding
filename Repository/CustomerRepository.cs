@@ -14,9 +14,9 @@ namespace BodyBuildingApp.Repository
         this.DBContext = dBContext;
         }
 
-        public Customer GetCustomerByCustomername(string Customername)
+        public Customer GetCustomerByEmail(string email)
         {
-            Customer Customer = this.DBContext.Customer.FirstOrDefault(item => item.Name == Customername);
+            Customer Customer = this.DBContext.Customer.FirstOrDefault(item => item.Email == email);
             return Customer;
         }
 
@@ -55,7 +55,7 @@ namespace BodyBuildingApp.Repository
             return listCustomer;
         }
 
-        public List<Customer> GetListCustomerByRole(string role)
+        public List<Customer> GetListCustomerByRole(Role role)
         {
             List<Customer> listCustomer = this.DBContext.Customer.Where(item => item.Role == role).ToList();
             return listCustomer;

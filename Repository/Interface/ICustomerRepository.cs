@@ -5,13 +5,13 @@ namespace BodyBuildingApp.Repository.Interface
 {
     public interface ICustomerRepository
     {
-        public Customer GetCustomerByCustomername(string Customername);
+        public Customer GetCustomerByEmail(string email);
         public Customer GetCustomerById(string id);
         public bool RegisterHandler(Customer Customer);
         public bool UpdatePasswordHandler(Customer Customer);
         public bool UpdateCustomerInfoHandler(Customer Customer);
         public List<Customer> GetAllCustomers();
-        public List<Customer> GetListCustomerByRole(string roleId);
+        public List<Customer> GetListCustomerByRole(Role role);
         public bool ManageAccountHandler(Customer Customer);
     }
 }

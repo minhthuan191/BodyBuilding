@@ -1,22 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using BodyBuildingApp.Models;
-using BodyBuildingApp.Utils;
 using BodyBuildingApp.Repository.Interface;
 using BodyBuildingApp.Service.Interface;
 using BodyBuildingApp.Utils.Common;
 using FluentValidation.Results;
 using BodyBuildingApp.Controllers.DTO;
-using BodyBuildingApp.Service;
 
 namespace BodyBuildingApp.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("/api/customer")]
     [ApiController]
     public class CustomersController : Controller
     {

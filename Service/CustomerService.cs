@@ -16,7 +16,7 @@ namespace BodyBuildingApp.Service
             this.DBContext = dBContext;
             this.CustomerRepository = CustomerRepository;
         }
-        public List<Customer> GetAllCustomerByRole(string role)
+        public List<Customer> GetAllCustomerByRole(Role role)
         {
             return this.CustomerRepository.GetListCustomerByRole(role);
         }
@@ -31,9 +31,9 @@ namespace BodyBuildingApp.Service
             return this.CustomerRepository.GetCustomerById(id);
         }
 
-        public Customer GetCustomerByCustomername(string Customername)
+        public Customer GetCustomerByEmail(string email)
         {
-            return this.CustomerRepository.GetCustomerByCustomername(Customername);
+            return this.CustomerRepository.GetCustomerByEmail(email);
         }
 
         public bool ManageAccountHandler(Customer Customer)

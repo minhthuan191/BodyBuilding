@@ -1,9 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "iH/0OguTleC+W4BbLE8YyhCBmDmv6uE4+p8mN55xu4h9x5JR2jolzv1OFgWBhvY94sAcvcG2qF0o+di5/8gsBA==",
+  "dgSpecHash": "IaLuraOYwhKyghWCi6ZSYT0PwFDfGOnjvhrdqtbbgbFC2GOEzjMiSLdvPcXS9EbxlpAPF4rF5GnWK9Mw5DgGjA==",
   "success": true,
   "projectFilePath": "D:\\MinhThuan\\SWD\\BodyBuildingApp\\BodyBuildingApp\\BodyBuildingApp.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\LENOVO-PC\\.nuget\\packages\\bcrypt.net-next\\4.0.2\\bcrypt.net-next.4.0.2.nupkg.sha512",
+    "C:\\Users\\LENOVO-PC\\.nuget\\packages\\fluentvalidation\\10.3.6\\fluentvalidation.10.3.6.nupkg.sha512",
+    "C:\\Users\\LENOVO-PC\\.nuget\\packages\\fluentvalidation.aspnetcore\\10.3.6\\fluentvalidation.aspnetcore.10.3.6.nupkg.sha512",
+    "C:\\Users\\LENOVO-PC\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\10.3.6\\fluentvalidation.dependencyinjectionextensions.10.3.6.nupkg.sha512",
     "C:\\Users\\LENOVO-PC\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\LENOVO-PC\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\LENOVO-PC\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",

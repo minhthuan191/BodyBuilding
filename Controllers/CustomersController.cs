@@ -24,6 +24,11 @@ namespace BodyBuildingApp.Controllers
             this.CustomerService = customerService;
             this.AuthService = authService;
         }
+        [HttpGet]
+        public Customer GetcustomerbyID(string id)
+        {
+            return CustomerRepository.GetCustomerById(id);
+        }
 
         [HttpPost("updateinfo")]
         public IActionResult HandleUpdateCustomerInfo([FromBody] UpdateCustomerDTO body)

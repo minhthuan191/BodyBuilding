@@ -94,7 +94,7 @@ namespace BodyBuildingApp.Controllers
             customer.Phone = body.Phone;
             customer.Address = body.Address;
             customer.Email = body.Email;
-            customer.Role = Role.CUSTOMER;
+            customer.Role = body.Role;
             customer.Password = body.Password;
 
 

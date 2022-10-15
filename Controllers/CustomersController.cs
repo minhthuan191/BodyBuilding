@@ -7,10 +7,12 @@ using BodyBuildingApp.Service.Interface;
 using BodyBuildingApp.Utils.Common;
 using FluentValidation.Results;
 using BodyBuildingApp.Controllers.DTO;
+using BodyBuildingApp.Auth;
 
 namespace BodyBuildingApp.Controllers
 {
     [Route("/api/customer")]
+    [ServiceFilter(typeof(AuthGuard))]
     [ApiController]
     public class CustomersController : Controller
     {

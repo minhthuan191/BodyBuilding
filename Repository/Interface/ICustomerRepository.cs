@@ -11,7 +11,7 @@ namespace BodyBuildingApp.Repository.Interface
         public bool UpdatePasswordHandler(Customer Customer);
         public bool UpdateCustomerInfoHandler(Customer Customer);
         public List<Customer> GetAllCustomers();
-        public List<Customer> GetListCustomerByRole(Role role);
+        public List<Customer> GetListCustomerByRole(string role);
         public bool ManageAccountHandler(Customer Customer);
     }
 }

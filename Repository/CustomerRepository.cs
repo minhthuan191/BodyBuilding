@@ -56,7 +56,7 @@ namespace BodyBuildingApp.Repository
             return listCustomer;
         }
 
-        public List<Customer> GetListCustomerByRole(Role role)
+        public List<Customer> GetListCustomerByRole(string role)
         {
             List<Customer> listCustomer = this.DBContext.Customer.Where(item => item.Role == role).ToList();
             return listCustomer;

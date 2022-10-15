@@ -11,7 +11,7 @@ namespace BodyBuildingApp.Service.Interface
         public Customer GetCustomerByEmail(string email);
         public bool RegisterHandler(Customer Customer);
         public List<Customer> GetAllCustomers();
-        public List<Customer> GetAllCustomerByRole(Role role);
+        public List<Customer> GetAllCustomerByRole(string role);
         public bool ManageAccountHandler(Customer Customer);
     }
 }

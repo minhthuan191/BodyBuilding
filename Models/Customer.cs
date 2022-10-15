@@ -3,11 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BodyBuildingApp.Models
 {
-    public enum Role
-    {   
-        CUSTOMER = 1,
-        ADMIN = 0
-    }
+   
     
     [Table("Customer")]
     public class Customer
@@ -40,7 +36,7 @@ namespace BodyBuildingApp.Models
         public string Address { set; get; }
 
         [Required]
-        public Role Role { set; get; }
+        public string Role { set; get; }
     
 
         [StringLength(50)]

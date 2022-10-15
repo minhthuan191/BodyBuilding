@@ -12,6 +12,8 @@ namespace BodyBuildingApp.Controllers.DTO
         public string ConfirmPassword { set; get; }
         public string Email { set; get; }
         public string Phone { set; get; }
+
+        public string Role { set; get; }
         public string Address { set; get; }
     }
 

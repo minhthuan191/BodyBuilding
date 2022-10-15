@@ -16,7 +16,7 @@ namespace BodyBuildingApp.Service
             this.DBContext = dBContext;
             this.CustomerRepository = CustomerRepository;
         }
-        public List<Customer> GetAllCustomerByRole(Role role)
+        public List<Customer> GetAllCustomerByRole(string role)
         {
             return this.CustomerRepository.GetListCustomerByRole(role);
         }

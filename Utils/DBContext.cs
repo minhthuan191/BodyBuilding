@@ -32,7 +32,7 @@ namespace BodyBuildingApp.Utils
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Data Source=localhost:1433;Initial Catalog=BodyBuilderApp;User ID=sa;Password=123456789abcd@;MultipleActiveResultSets=true;Integrated Security=false;TrustServerCertificate=true");
+            optionsBuilder.UseSqlServer("Data Source=localhost,1433;Initial Catalog=BodyBuilderApp;User ID=sa;Password=123456789abcd@;MultipleActiveResultSets=true;Integrated Security=false;TrustServerCertificate=true");
         }
 
         public static async Task<Boolean> InitDatabase(IConfig config)

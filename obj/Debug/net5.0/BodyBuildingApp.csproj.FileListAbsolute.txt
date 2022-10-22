@@ -59,3 +59,7 @@ D:\MinhThuan\SWD\BodyBuildingApp\BodyBuildingApp\obj\Debug\net5.0\ref\BodyBuildi
 D:\MinhThuan\SWD\BodyBuildingApp\BodyBuildingApp\obj\Debug\net5.0\BodyBuildingApp.pdb
 D:\MinhThuan\SWD\BodyBuildingApp\BodyBuildingApp\obj\Debug\net5.0\BodyBuildingApp.genruntimeconfig.cache
 D:\MinhThuan\SWD\BodyBuildingApp\BodyBuildingApp\obj\Debug\net5.0\BodyBuildingApp.csproj.AssemblyReference.cache
+D:\MinhThuan\SWD\BodyBuildingApp\BodyBuildingApp\bin\Debug\net5.0\BCrypt.Net-Next.dll
+D:\MinhThuan\SWD\BodyBuildingApp\BodyBuildingApp\bin\Debug\net5.0\FluentValidation.dll
+D:\MinhThuan\SWD\BodyBuildingApp\BodyBuildingApp\bin\Debug\net5.0\FluentValidation.AspNetCore.dll
+D:\MinhThuan\SWD\BodyBuildingApp\BodyBuildingApp\bin\Debug\net5.0\FluentValidation.DependencyInjectionExtensions.dll

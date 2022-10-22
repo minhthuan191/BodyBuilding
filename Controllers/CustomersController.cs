@@ -1,109 +1,98 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using BodyBuildingApp.Models;
-using BodyBuildingApp.Utils;
+using BodyBuildingApp.Repository.Interface;
+using BodyBuildingApp.Service.Interface;
+using BodyBuildingApp.Utils.Common;
+using FluentValidation.Results;
+using BodyBuildingApp.Controllers.DTO;
+using BodyBuildingApp.Auth;
 
 namespace BodyBuildingApp.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("/api/customer")]
+    [ServiceFilter(typeof(AuthGuard))]
     [ApiController]
-    public class CustomersController : ControllerBase
+    public class CustomersController : Controller
     {
-        private readonly DBContext _context;
+        private readonly ICustomerRepository CustomerRepository;
+        private readonly IAuthService AuthService;
+        private readonly ICustomerService CustomerService;
 
-        public CustomersController(DBContext context)
+        public CustomersController(ICustomerRepository customerRepository,  ICustomerService customerService, IAuthService authService)
         {
-            _context = context;
+            this.CustomerRepository = customerRepository;
+            this.CustomerService = customerService;
+            this.AuthService = authService;
         }
-
-        // GET: api/Customers
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Customer>>> GetCustomer()
+        public Customer GetcustomerbyID(string id)
         {
-            return await _context.Customer.ToListAsync();
+            return CustomerRepository.GetCustomerById(id);
         }
 
-        // GET: api/Customers/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Customer>> GetCustomer(string id)
+        [HttpPost("updateinfo")]
+        public IActionResult HandleUpdateCustomerInfo([FromBody] UpdateCustomerDTO body)
         {
-            var customer = await _context.Customer.FindAsync(id);
+            var res = new ServerApiResponse<string>();
 
-            if (customer == null)
+            ValidationResult result = new UpdateCustomerDTOValidator().Validate(body);
+            if (!result.IsValid)
             {
-                return NotFound();
+                res.mapDetails(result);
+                return new BadRequestObjectResult(res.getResponse());
             }
 
-            return customer;
+            Customer Customer = (Customer)this.ViewData["Customer"];
+
+            Customer.Name = body.Name;
+            Customer.Phone = body.Phone;
+            Customer.Address = body.Address;
+            Customer.Email = body.Email;
+
+            this.CustomerRepository.UpdateCustomerInfoHandler(Customer);
+
+            res.setMessage("Update Customer infomation success!");
+            return new ObjectResult(res.getResponse());
         }
-
-        // PUT: api/Customers/5
-        // update
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutCustomer(string id, Customer customer)
+        [HttpPost("password")]
+        public IActionResult HandleUpdatePassword([FromBody] ChangePasswordDTO body)
         {
-            if (!id.Equals(customer.UserId))
+            var res = new ServerApiResponse<string>();
+            ValidationResult result = new ChangePasswordDTOValidator().Validate(body);
+            if (!result.IsValid)
             {
-                return NotFound();
+                res.mapDetails(result);
+                return new BadRequestObjectResult(res.getResponse());
             }
 
-            _context.Entry(customer).State = EntityState.Modified;
-
-            try
+            Customer Customer = (Customer)this.ViewData["Customer"];
+            bool checkPassword = AuthService.ComparePassword(body.Password, Customer.Password);
+            if (!checkPassword)
             {
-                await _context.SaveChangesAsync();
+                res.setErrorMessage("Old Password is not correct!");
+                return new BadRequestObjectResult(res.getResponse());
             }
-            catch (DbUpdateConcurrencyException)
+            if (!(body.NewPassword == body.ConfirmNewPassword))
             {
-                if (!CustomerExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                res.setErrorMessage("Confirm password does not match new password");
+                return new BadRequestObjectResult(res.getResponse());
             }
+            Customer.Password = body.NewPassword;
 
-            return NoContent();
-        }
 
-        // POST: api/Customers
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Customer>> PostCustomer(Customer customer)
-        {
-            _context.Customer.Add(customer);
-            await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCustomer", new { id = customer.UserId }, customer);
-        }
-
-        // DELETE: api/Customers/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCustomer(string id)
-        {
-            var customer = await _context.Customer.FindAsync(id);
-            if (customer == null)
+            this.CustomerRepository.UpdatePasswordHandler(Customer);
+            this.HttpContext.Response.Cookies.Append("auth-token", "", new CookieOptions()
             {
-                return NotFound();
-            }
+                Expires = DateTime.Now.AddDays(-1),
+                SameSite = SameSiteMode.None,
+                Secure = true
 
-            _context.Customer.Remove(customer);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool CustomerExists(string id)
-        {
-            return _context.Customer.Any(e => e.UserId.Equals(id));
+            });
+            res.setMessage("Change Password success!");
+            return new ObjectResult(res.getResponse());
         }
     }
 }

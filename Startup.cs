@@ -1,3 +1,7 @@
+using BodyBuildingApp.Repository;
+using BodyBuildingApp.Repository.Interface;
+using BodyBuildingApp.Service;
+using BodyBuildingApp.Service.Interface;
 using BodyBuildingApp.Utils;
 using BodyBuildingApp.Utils.Interface;
 using Microsoft.AspNetCore.Builder;
@@ -32,7 +36,11 @@ namespace BodyBuildingApp
             services.AddControllersWithViews();
             services.AddScoped<DBContext, DBContext>();
             services.AddScoped<IConfig, Config>();
+            services.AddScoped<IJwtService, JwtService>();
+            services.AddScoped<IAuthService, AuthService>();
 
+            services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<ICustomerRepository,CustomerRepository >();
             services.AddSession();
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -60,7 +68,9 @@ namespace BodyBuildingApp
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
             await DBContext.InitDatabase(config);
         }

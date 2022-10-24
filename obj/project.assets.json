@@ -6211,11 +6211,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\MinhThuan\\SWD\\BodyBuildingApp\\BodyBuildingApp\\BodyBuildingApp.csproj",
+      "projectUniqueName": "D:\\MinhThuan\\SWD\\BodyBuildingApp\\New folder\\BodyBuilding\\BodyBuildingApp.csproj",
       "projectName": "BodyBuildingApp",
-      "projectPath": "D:\\MinhThuan\\SWD\\BodyBuildingApp\\BodyBuildingApp\\BodyBuildingApp.csproj",
+      "projectPath": "D:\\MinhThuan\\SWD\\BodyBuildingApp\\New folder\\BodyBuilding\\BodyBuildingApp.csproj",
       "packagesPath": "C:\\Users\\LENOVO-PC\\.nuget\\packages\\",
-      "outputPath": "D:\\MinhThuan\\SWD\\BodyBuildingApp\\BodyBuildingApp\\obj\\",
+      "outputPath": "D:\\MinhThuan\\SWD\\BodyBuildingApp\\New folder\\BodyBuilding\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\LENOVO-PC\\AppData\\Roaming\\NuGet\\NuGet.Config",

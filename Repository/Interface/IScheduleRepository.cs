@@ -10,7 +10,7 @@ namespace BodyBuildingApp.Repository.Interface
 
         public bool UpdateSchedule(Schedule schedule);
 
-        public bool DeleteSchedule(Schedule scheduleId);
+        public bool DeleteSchedule(string scheduleId);
 
     }
 }

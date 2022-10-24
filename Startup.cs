@@ -47,7 +47,15 @@ namespace BodyBuildingApp
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BodyBuildingApp", Version = "v1" });
             });
-         
+
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.WithOrigins("https://bodybuilding.monoinfinity.net/")
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,6 +73,8 @@ namespace BodyBuildingApp
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors("MyPolicy");
 
             app.UseEndpoints(endpoints =>
             {

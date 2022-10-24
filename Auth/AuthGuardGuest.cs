@@ -1,4 +1,5 @@
-﻿using BodyBuildingApp.Repository.Interface;
+﻿
+using BodyBuildingApp.Service.Interface;
 using BodyBuildingApp.Utils.Common;
 using BodyBuildingApp.Utils.Interface;
 using BodyBuildingApp.Utils.Locale;
@@ -12,12 +13,12 @@ namespace BodyBuildingApp.Auth
     public class AuthGuardGuest :IActionFilter
     {
         private readonly IJwtService JWTService;
-        private readonly ICustomerRepository CustomerRepository;
-        public AuthGuardGuest(IJwtService jwtService, ICustomerRepository customerRepository)
+        private readonly ICustomerService CustomerService;
+        public AuthGuardGuest(IJwtService jwtService, ICustomerService customerService)
         {
 
             this.JWTService = jwtService;
-            this.CustomerRepository = customerRepository;
+            this.CustomerService = customerService;
         }
 
         public void OnActionExecuted(ActionExecutedContext context)
@@ -46,7 +47,7 @@ namespace BodyBuildingApp.Auth
                     var token = this.JWTService.VerifyToken(cookies["auth-token"]).Split(";");
                     if (token != null)
                     {
-                        var user = this.CustomerRepository.GetCustomerById(token[0]);
+                        var user = this.CustomerService.GetCustomerById(token[0]);
                         Controller controller = context.Controller as Controller;
                         controller.ViewData["user"] = user;
                     }

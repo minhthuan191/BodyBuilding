@@ -1,4 +1,4 @@
-﻿using BodyBuildingApp.Repository.Interface;
+﻿
 using BodyBuildingApp.Service.Interface;
 using BodyBuildingApp.Utils.Interface;
 using Microsoft.AspNetCore.Mvc;
@@ -8,16 +8,14 @@ using System.Collections.Generic;
 
 namespace BodyBuildingApp.Auth
 {
-    public class CustomerFilter : IActionFilter
+    public class UserFilter : IActionFilter
     {
         private readonly IJwtService JWTService;
-        private readonly ICustomerRepository CustomerRepository;
         private readonly ICustomerService CustomerService;
-        public CustomerFilter(IJwtService jwtService, ICustomerRepository CustomerRepository, ICustomerService CustomerService)
+        public UserFilter(IJwtService jwtService, ICustomerService CustomerService)
         {
 
             this.JWTService = jwtService;
-            this.CustomerRepository = CustomerRepository;
             this.CustomerService = CustomerService;
         }
 
@@ -58,7 +56,7 @@ namespace BodyBuildingApp.Auth
                 {
                     return false;
                 }
-                var Customer = this.CustomerRepository.GetCustomerById(token[0]);
+                var Customer = this.CustomerService.GetCustomerById(token[0]);
                 if (Customer == null)
                 {
                     return false;

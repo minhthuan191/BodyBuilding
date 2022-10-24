@@ -1,5 +1,4 @@
 ﻿using BodyBuildingApp.Models;
-using BodyBuildingApp.Repository.Interface;
 using BodyBuildingApp.Service.Interface;
 using BodyBuildingApp.Utils;
 using BodyBuildingApp.Utils.Interface;

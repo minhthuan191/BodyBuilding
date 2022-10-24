@@ -1,13 +1,17 @@
 ﻿using BodyBuildingApp.Models;
-using BodyBuildingApp.Repository.Interface;
+using BodyBuildingApp.Service.Interface;
 using BodyBuildingApp.Utils;
 using System.Linq;
 
 namespace BodyBuildingApp.Repository
 {
-    public class ExerciseRepository : IExerciseRepository
+    public class ExerciseRepository 
     {
         private readonly DBContext DBContext;
+        public ExerciseRepository(DBContext dBContext)
+        {
+            this.DBContext = dBContext;
+        }
         public bool DeleteExcercise(Exercise id)
         {
             this.DBContext.Remove(id);

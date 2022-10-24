@@ -1,13 +1,18 @@
 ﻿using BodyBuildingApp.Models;
-using BodyBuildingApp.Repository.Interface;
+using BodyBuildingApp.Service.Interface;
 using BodyBuildingApp.Utils;
 using System.Linq;
 
 namespace BodyBuildingApp.Repository
 {
-    public class DailyFoodRepository : IDailyFoodRepository
+    public class DailyFoodRepository 
     {
         private readonly DBContext DBContext;
+        public DailyFoodRepository(DBContext dBContext)
+        {
+            DBContext = dBContext;
+        }
+
         public bool DeleteDailyFood(DailyFood foodid)
         {
             this.DBContext.DailyFood.Remove(foodid);

@@ -40,7 +40,7 @@ namespace BodyBuildingApp
             services.AddScoped<IAuthService, AuthService>();
 
             services.AddScoped<ICustomerService, CustomerService>();
-            services.AddScoped<ICustomerRepository,CustomerRepository >();
+            services.AddScoped<CustomerRepository>();
             services.AddSession();
             services.AddControllers();
             services.AddSwaggerGen(c =>

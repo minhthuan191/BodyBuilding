@@ -1,8 +1,8 @@
 ﻿using BodyBuildingApp.Models;
 
-namespace BodyBuildingApp.Repository.Interface
+namespace BodyBuildingApp.Service.Interface
 {
-    public interface ITrainerRepository
+    public interface ITrainerService
     {
         public Trainer GetTrainerById(string trainerId);
 

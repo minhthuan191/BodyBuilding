@@ -1,8 +1,8 @@
 ﻿using BodyBuildingApp.Models;
 
-namespace BodyBuildingApp.Repository.Interface
+namespace BodyBuildingApp.Service.Interface
 {
-    public interface ITargetRepository
+    public interface ITargetService
     {
         public Target GetTargetbyID(string targetId);
 

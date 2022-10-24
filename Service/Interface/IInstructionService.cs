@@ -1,8 +1,8 @@
 ﻿using BodyBuildingApp.Models;
 
-namespace BodyBuildingApp.Repository.Interface
+namespace BodyBuildingApp.Service.Interface
 {
-    public interface IInstructionRepository
+    public interface IInstructionService
     {
         public Instruction GetInstructionbyID(string id);
 

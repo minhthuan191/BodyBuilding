@@ -1,8 +1,8 @@
 ﻿using BodyBuildingApp.Models;
 
-namespace BodyBuildingApp.Repository.Interface
+namespace BodyBuildingApp.Service.Interface
 {
-    public interface IExerciseRepository
+    public interface IExerciseService
     {
         public Exercise GetExercisebyId(string id);
 

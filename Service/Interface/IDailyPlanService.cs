@@ -1,9 +1,9 @@
 ﻿using BodyBuildingApp.Models;
 using System.Threading.Tasks;
 
-namespace BodyBuildingApp.Repository.Interface
+namespace BodyBuildingApp.Service.Interface
 {
-    public interface IDailyPlanRepository
+    public interface IDailyPlanService
     {
         public DailyPlan GetDailybyPlanID(string id);
         public DailyPlan GetDailybyUserID(string id);

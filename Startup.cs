@@ -1,5 +1,5 @@
+using BodyBuildingApp.Auth;
 using BodyBuildingApp.Repository;
-using BodyBuildingApp.Repository.Interface;
 using BodyBuildingApp.Service;
 using BodyBuildingApp.Service.Interface;
 using BodyBuildingApp.Utils;
@@ -40,7 +40,11 @@ namespace BodyBuildingApp
             services.AddScoped<IAuthService, AuthService>();
 
             services.AddScoped<ICustomerService, CustomerService>();
-            services.AddScoped<ICustomerRepository,CustomerRepository >();
+            services.AddScoped<CustomerRepository>();
+            services.AddScoped<AuthGuard>();
+            services.AddScoped<AuthGuardGuest>();
+            services.AddScoped<UserFilter>();
+
             services.AddSession();
             services.AddControllers();
             services.AddSwaggerGen(c =>

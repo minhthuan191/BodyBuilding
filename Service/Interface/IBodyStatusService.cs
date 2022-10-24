@@ -1,9 +1,9 @@
 ﻿using BodyBuildingApp.Models;
 using System.Collections.Generic;
 
-namespace BodyBuildingApp.Repository.Interface
+namespace BodyBuildingApp.Service.Interface
 {
-    public interface IBodyStatusRepository
+    public interface IBodyStatusService
     {
         public BodyStatus GetBodyStatusByUserId(string userId);
         public BodyStatus GetBodyStatusByBodyID(string bodyid);

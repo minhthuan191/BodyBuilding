@@ -1,5 +1,4 @@
 ﻿using BodyBuildingApp.Models;
-using BodyBuildingApp.Repository.Interface;
 using BodyBuildingApp.Utils;
 using System;
 using System.Collections.Generic;
@@ -7,18 +6,19 @@ using System.Linq;
 
 namespace BodyBuildingApp.Repository
 {
-    public class BodyStatusRepository : IBodyStatusRepository
+    public class BodyStatusRepository 
     {
         private readonly DBContext DBContext;
+        public BodyStatusRepository(DBContext dBContext)
+        {
+            this.DBContext = dBContext;
+        }
         public bool Deletebody(BodyStatus bodyid)
         {
-            try {
-                this.DBContext.BodyStatus.Remove(bodyid);
+                this.DBContext.Remove(bodyid);
+                this.DBContext.SaveChanges();
                 return true;
-            } catch(Exception ex)
-            {
-                return false;
-            }
+            
         }
 
         public List<BodyStatus> GetAllBodyStatus()
@@ -41,10 +41,12 @@ namespace BodyBuildingApp.Repository
         }
 
         public bool Updatebody(BodyStatus bodyStatus)
-        {
-            this.DBContext.BodyStatus.Update(bodyStatus);
-            this.DBContext.SaveChanges();
-            return true;
+        {  
+            
+                this.DBContext.BodyStatus.Update(bodyStatus);
+                this.DBContext.SaveChanges();
+                return true;
+
         }
     }
 }

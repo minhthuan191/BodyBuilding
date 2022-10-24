@@ -1,14 +1,18 @@
 ﻿using BodyBuildingApp.Models;
-using BodyBuildingApp.Repository.Interface;
+using BodyBuildingApp.Service.Interface;
 using BodyBuildingApp.Utils;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using System.Linq;
 
 namespace BodyBuildingApp.Repository
 {
-    public class InstructionRepository : IInstructionRepository
+    public class InstructionRepository
     {
         private readonly DBContext DBContext;
+        public InstructionRepository(DBContext dBContext)
+        {
+            this.DBContext = dBContext;
+        }
         public bool DeleteInstruction(Instruction insId)
         {
             this.DBContext.Remove(insId);

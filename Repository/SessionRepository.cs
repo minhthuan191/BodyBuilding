@@ -1,14 +1,19 @@
 ﻿using BodyBuildingApp.Models;
-using BodyBuildingApp.Repository.Interface;
+using BodyBuildingApp.Service.Interface;
 using BodyBuildingApp.Utils;
 using Microsoft.AspNetCore.Http;
 using System.Linq;
 
 namespace BodyBuildingApp.Repository
 {
-    public class SessionRepository : ISessionRepository
+    public class SessionRepository
     {
         private readonly DBContext DBContext;
+        public SessionRepository(DBContext dBContext)
+        {
+            DBContext = dBContext;
+        }
+
         public bool DeleteSession(Session sessionId)
         {
             this.DBContext.Remove(sessionId);

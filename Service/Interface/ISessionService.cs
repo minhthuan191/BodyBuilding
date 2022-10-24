@@ -1,8 +1,8 @@
 ﻿using BodyBuildingApp.Models;
 
-namespace BodyBuildingApp.Repository.Interface
+namespace BodyBuildingApp.Service.Interface
 {
-    public interface ISessionRepository
+    public interface ISessionService
     {
         public Session GetSessionById(string sessionId);
 

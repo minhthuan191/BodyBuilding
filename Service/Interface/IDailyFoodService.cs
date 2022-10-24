@@ -1,8 +1,8 @@
 ﻿using BodyBuildingApp.Models;
 
-namespace BodyBuildingApp.Repository.Interface
+namespace BodyBuildingApp.Service.Interface
 {
-    public interface IDailyFoodRepository
+    public interface IDailyFoodService
     {
         public DailyFood GetDailyFoodbyID(string foodId);
 

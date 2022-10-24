@@ -2,12 +2,12 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using BodyBuildingApp.Models;
-using BodyBuildingApp.Repository.Interface;
 using BodyBuildingApp.Service.Interface;
 using BodyBuildingApp.Utils.Common;
 using FluentValidation.Results;
 using BodyBuildingApp.Controllers.DTO;
 using BodyBuildingApp.Auth;
+using BodyBuildingApp.Service;
 
 namespace BodyBuildingApp.Controllers
 {
@@ -16,20 +16,18 @@ namespace BodyBuildingApp.Controllers
     [ApiController]
     public class CustomersController : Controller
     {
-        private readonly ICustomerRepository CustomerRepository;
         private readonly IAuthService AuthService;
         private readonly ICustomerService CustomerService;
 
-        public CustomersController(ICustomerRepository customerRepository,  ICustomerService customerService, IAuthService authService)
+        public CustomersController(ICustomerService customerService, IAuthService authService)
         {
-            this.CustomerRepository = customerRepository;
             this.CustomerService = customerService;
             this.AuthService = authService;
         }
         [HttpGet]
         public Customer GetcustomerbyID(string id)
         {
-            return CustomerRepository.GetCustomerById(id);
+            return CustomerService.GetCustomerById(id);
         }
 
         [HttpPost("updateinfo")]
@@ -51,7 +49,7 @@ namespace BodyBuildingApp.Controllers
             Customer.Address = body.Address;
             Customer.Email = body.Email;
 
-            this.CustomerRepository.UpdateCustomerInfoHandler(Customer);
+            this.CustomerService.UpdateCustomerInfoHandler(Customer);
 
             res.setMessage("Update Customer infomation success!");
             return new ObjectResult(res.getResponse());
@@ -83,7 +81,7 @@ namespace BodyBuildingApp.Controllers
 
 
 
-            this.CustomerRepository.UpdatePasswordHandler(Customer);
+            this.CustomerService.UpdatePasswordHandler(Customer);
             this.HttpContext.Response.Cookies.Append("auth-token", "", new CookieOptions()
             {
                 Expires = DateTime.Now.AddDays(-1),

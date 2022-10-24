@@ -1,12 +1,12 @@
 ﻿using BodyBuildingApp.Models;
-using BodyBuildingApp.Repository.Interface;
+using BodyBuildingApp.Service.Interface;
 using BodyBuildingApp.Utils;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace BodyBuildingApp.Repository
 {
-    public class CustomerRepository : ICustomerRepository
+    public class CustomerRepository 
     { 
 
         private readonly DBContext DBContext;

@@ -1,7 +1,7 @@
 ﻿using BodyBuildingApp.Models;
 using System.Collections.Generic;
 
-namespace BodyBuildingApp.Repository.Interface
+namespace BodyBuildingApp.Service.Interface
 {
     public interface ICustomerRepository
     {

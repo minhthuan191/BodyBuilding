@@ -1,5 +1,4 @@
 ﻿using BodyBuildingApp.Models;
-using BodyBuildingApp.Repository.Interface;
 using BodyBuildingApp.Service.Interface;
 using BodyBuildingApp.Utils;
 using BodyBuildingApp.Utils.Interface;
@@ -9,18 +8,18 @@ namespace BodyBuildingApp.Service
     public class AuthService : IAuthService
     {
         private readonly DBContext DBContext;
-        private readonly ICustomerRepository CustomerRepository;
+        private readonly ICustomerService CustomerService;
         private readonly IJwtService JWTService;
-        public AuthService(DBContext dBContext, ICustomerRepository customerRepository, IJwtService jwtService)
+        public AuthService(DBContext dBContext, ICustomerService customerService, IJwtService jwtService)
         {
             this.DBContext = dBContext;
-            this.CustomerRepository = customerRepository;
+            this.CustomerService = customerService;
             this.JWTService = jwtService;
         }
 
         public bool RegisterHandler(Customer customer)
         {
-            return this.CustomerRepository.RegisterHandler(customer);
+            return this.CustomerService.RegisterHandler(customer);
         }
 
 

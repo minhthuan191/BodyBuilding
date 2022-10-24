@@ -1,14 +1,17 @@
 ﻿using BodyBuildingApp.Models;
-using BodyBuildingApp.Repository.Interface;
+using BodyBuildingApp.Service.Interface;
 using BodyBuildingApp.Utils;
 using System.Linq;
 
 namespace BodyBuildingApp.Repository
 {
-
-    public class ScheduleRepository : IScheduleRepository
+    public class ScheduleRepository 
     {
         private readonly DBContext DBContext;
+        public ScheduleRepository (DBContext dBContext)
+        {
+            this.DBContext = dBContext;
+        }
         public bool DeleteSchedule(string scheduleId)
         {
             this.DBContext.Remove(scheduleId);

@@ -1,8 +1,8 @@
 ﻿using BodyBuildingApp.Models;
 
-namespace BodyBuildingApp.Repository.Interface
+namespace BodyBuildingApp.Service.Interface
 {
-    public interface IScheduleRepository
+    public interface IScheduleService
     {
         public Schedule GetScheduleById(string scheduleId);
 

@@ -1,21 +1,20 @@
 ﻿using BodyBuildingApp.Models;
-using BodyBuildingApp.Repository.Interface;
+using BodyBuildingApp.Repository;
 using BodyBuildingApp.Service.Interface;
 using BodyBuildingApp.Utils;
+using System;
 using System.Collections.Generic;
 
 namespace BodyBuildingApp.Service
 {
     public class CustomerService : ICustomerService
     {
-        private readonly DBContext DBContext;
-        private readonly ICustomerRepository CustomerRepository;
-
-        public CustomerService(DBContext dBContext, ICustomerRepository CustomerRepository)
+        private readonly CustomerRepository CustomerRepository;
+        public CustomerService(CustomerRepository customerRepository)
         {
-            this.DBContext = dBContext;
-            this.CustomerRepository = CustomerRepository;
+            CustomerRepository = customerRepository;
         }
+
         public List<Customer> GetAllCustomerByRole(string role)
         {
             return this.CustomerRepository.GetListCustomerByRole(role);
@@ -28,7 +27,12 @@ namespace BodyBuildingApp.Service
 
         public Customer GetCustomerById(string id)
         {
-            return this.CustomerRepository.GetCustomerById(id);
+            if(id == null){
+                throw new Exception("error at get customer by id");
+            }else
+            {
+                return CustomerRepository.GetCustomerById(id);
+            }
         }
 
         public Customer GetCustomerByEmail(string email)

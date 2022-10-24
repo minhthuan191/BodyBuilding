@@ -1,8 +1,8 @@
 ﻿using BodyBuildingApp.Models;
 
-namespace BodyBuildingApp.Repository.Interface
+namespace BodyBuildingApp.Service.Interface
 {
-    public interface IFoodDetailRepository
+    public interface IFoodDetailService
     {
         public FoodDetail GetFoodbyName(string name);
 

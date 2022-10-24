@@ -1,0 +1,88 @@
+footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: black;
+    height: auto;
+    width: 100%;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    color: white;
+  }
+  
+  .footer__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .footer__container h3 {
+    font-size: 30px;
+    font-weight: 500;
+    text-transform: capitalize;
+    line-height: 3rem;
+  }
+  
+  .footer__container h4 {
+    margin-top: 10px;
+  }
+  
+  .footer__wrapper {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+  }
+  
+  .footer__item {
+    flex: 1;
+    font-size: 15px;
+  }
+  
+  @media only screen and (max-width:768px) {
+    .footer__wrapper {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .footer__item {
+      margin-bottom: 20px;
+      max-width: 80%;
+    }
+  }
+  
+  .content__appget{
+    width: 40%;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+  }
+  
+  .content__appget__inside{
+    height: 100%;
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    border-radius: 100px;
+  }
+  
+  .appget__icon{
+    width: 50%;
+    height: 100%;
+    
+  }
+  .appget__content{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .content__appget__inside:hover{
+    background-color: grey;
+  }

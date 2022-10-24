@@ -1,0 +1,16 @@
+@import "./base";
+@import "./variables";
+
+//layout
+@import "./container/layout";
+
+//components
+@import "./components/navbar";
+@import "./components/footer";
+
+
+//pages
+@import "./pages/home";
+@import "./pages/lessonList";
+@import "./pages/login";
+

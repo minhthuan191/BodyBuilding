@@ -1,0 +1,16 @@
+.layout {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .layout__navbar {
+    background-color: black;
+    position: fixed;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    z-index: 100;
+  }

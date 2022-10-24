@@ -1,0 +1,29 @@
+.home__content {
+    width: 100%;
+    height: auto;
+  
+  }
+  
+  .home__content--poster{
+    width: 100%;
+    height: 500px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+  }
+  .home__content--poster img{
+    position: relative;
+    height: 100%;
+    object-fit: contain;
+    overflow: hidden;
+  }
+  
+  .home__content--opening {
+    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
+  }

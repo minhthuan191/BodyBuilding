@@ -15,7 +15,7 @@ namespace BodyBuildingApp.Utils
         public JwtService(IConfig config)
         {
             this.Config = config;
-            this.Secret = this.Config.GetEnvByKey("JWT_SECRET");
+            this.Secret = "abcxyzmnp123456789";
         }
 
         public string GenerateToken(string data)

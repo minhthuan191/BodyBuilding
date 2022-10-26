@@ -54,7 +54,7 @@ namespace BodyBuildingApp
 
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
-                builder.WithOrigins("https://bodybuilding.monoinfinity.net/")
+                builder.AllowAnyOrigin()
                        .AllowAnyMethod()
                        .AllowAnyHeader();
             }));

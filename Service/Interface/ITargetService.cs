@@ -8,6 +8,6 @@ namespace BodyBuildingApp.Service.Interface
 
         public bool UpdateTarget(Target target);
 
-        public bool DeleteTarget(Target targetId);
+        public bool DeleteTarget(string targetId);
     }
 }

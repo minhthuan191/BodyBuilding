@@ -13,8 +13,9 @@ namespace BodyBuildingApp.Repository
         {
             this.DBContext = dBContext;
         }
-        public bool DeleteInstruction(Instruction insId)
+        public bool DeleteInstruction(string insId)
         {
+            if (GetInstructionbyID(insId) == null) return false;
             this.DBContext.Remove(insId);
             this.DBContext.SaveChanges();
             return true;
@@ -23,6 +24,7 @@ namespace BodyBuildingApp.Repository
         public Instruction GetInstructionbyID(string id)
         {
             Instruction instruction = this.DBContext.Instruction.FirstOrDefault(item => item.InstructionId == id);
+            if(instruction == null) return null;
             return instruction;
         }
 
@@ -35,12 +37,14 @@ namespace BodyBuildingApp.Repository
         public Instruction GetInstructionbyTrainer(string trainerid)
         {
             Instruction instruction = this.DBContext.Instruction.FirstOrDefault(item => item.TrainerId == trainerid);
+            if (instruction == null) return null;
             return instruction;
         }
 
-        public bool UpdateInstruction(Instruction instructionId)
+        public bool UpdateInstruction(Instruction instruction)
         {
-            this.DBContext.Update(instructionId);
+            if (GetInstructionbyID(instruction.InstructionId) == null) return false;
+            this.DBContext.Update(instruction);
             this.DBContext.SaveChanges();
             return true;
         }

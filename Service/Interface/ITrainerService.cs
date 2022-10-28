@@ -8,6 +8,6 @@ namespace BodyBuildingApp.Service.Interface
 
         public bool UpdateTrainer(Trainer trainer);
 
-        public bool DeleteTrainer(Trainer trainerId);
+        public bool DeleteTrainer(string trainerId);
     }
 }

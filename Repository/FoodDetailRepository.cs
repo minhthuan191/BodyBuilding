@@ -13,9 +13,10 @@ namespace BodyBuildingApp.Repository
             DBContext = dBContext;
         }
 
-        public bool DeleteFoodDetail(FoodDetail foodDId)
+        public bool DeleteFoodDetail(string foodname)
         {
-            this.DBContext.Remove(foodDId);
+            if (GetFoodbyName(foodname) == null) return false;
+            this.DBContext.Remove(foodname);
             this.DBContext.SaveChanges();
             return true;
         }
@@ -23,18 +24,21 @@ namespace BodyBuildingApp.Repository
         public FoodDetail GetFoodByCalories(string calories)
         {
             FoodDetail foodDetail = this.DBContext.FoodDetail.FirstOrDefault(item => item.Calories.Equals(calories));
+            if (foodDetail == null) return null; 
             return foodDetail;
         }
 
         public FoodDetail GetFoodbyName(string name)
         {
             FoodDetail foodDetail = this.DBContext.FoodDetail.FirstOrDefault(item => item.FoodName == name);
+            if(foodDetail == null) return null;
             return foodDetail;
         }
 
-        public bool UpdateFoodDetail(FoodDetail foodId)
+        public bool UpdateFoodDetail(FoodDetail food)
         {
-            this.DBContext.Update(foodId);
+            if (GetFoodbyName(food.FoodName) == null) return false;
+            this.DBContext.Update(food);
             this.DBContext.SaveChanges();
             return true;
         }

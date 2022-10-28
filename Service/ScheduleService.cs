@@ -18,9 +18,9 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (scheduleId == null)
+                if (scheduleId == null || schrepo.GetScheduleById(scheduleId) ==null)
                 {
-                    throw new Exception("Error at get DeleteSchedule");
+                    return false;
                 }
                 else
                 {
@@ -37,9 +37,9 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (scheduleId == null)
+                if (scheduleId == null || schrepo.GetScheduleById(scheduleId) == null)
                 {
-                    throw new Exception("Error at get GetScheduleById");
+                    return null;
                 }
                 else
                 {
@@ -56,9 +56,9 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (userId == null)
+                if (userId == null || schrepo.GetScheduleByUserID(userId) == null)
                 {
-                    throw new Exception("Error at get GetScheduleByUserID");
+                    return null;
                 }
                 else
                 {
@@ -75,9 +75,9 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (schedule == null)
+                if (schedule == null || schrepo.GetScheduleById(schedule.ScheduleId) == null)
                 {
-                    throw new Exception("Error at get UpdateSchedule");
+                    return false ;
                 }
                 else
                 {

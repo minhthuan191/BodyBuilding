@@ -14,13 +14,13 @@ namespace BodyBuildingApp.Service
             this.insrepo = insrepo;
         }
 
-        public bool DeleteInstruction(Instruction insId)
+        public bool DeleteInstruction(string insId)
         {
             try
             {
-                if (insId == null)
+                if (insId == null || insrepo.GetInstructionbyID(insId)==null)
                 {
-                    throw new Exception("Error at get DeleteInstruction");
+                    return false;
                 }
                 else
                 {
@@ -37,9 +37,9 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (id == null)
+                if (id == null || insrepo.GetInstructionbyID(id) == null)
                 {
-                    throw new Exception("Error at get DeleteInstruction");
+                    return null;
                 }
                 else
                 {
@@ -61,9 +61,9 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (trainerid == null)
+                if (trainerid == null || insrepo.GetInstructionbyTrainer(trainerid) == null)
                 {
-                    throw new Exception("Error at get GetInstructionbyTrainer");
+                    return null;
                 }
                 else
                 {
@@ -80,9 +80,9 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (instruction == null)
+                if (instruction == null || insrepo.GetInstructionbyID(instruction.InstructionId) == null)
                 {
-                    throw new Exception("Error at get UpdateInstruction");
+                    return false;
                 }
                 else
                 {

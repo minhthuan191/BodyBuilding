@@ -10,7 +10,7 @@ namespace BodyBuildingApp.Service.Interface
 
         public bool UpdateDailyFood(DailyFood dailyFood);
 
-        public bool DeleteDailyFood(DailyFood foodid);
+        public bool DeleteDailyFood(string foodid);
 
         public DailyFood GetDailyFoodByFoodName(string foodname);
     }

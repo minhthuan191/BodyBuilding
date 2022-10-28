@@ -14,13 +14,13 @@ namespace BodyBuildingApp.Service
             this.ecrepo = ecrepo;
         }
 
-        public bool DeleteExcercise(Exercise id)
+        public bool DeleteExcercise(string id)
         {
             try
             {
-                if (id == null)
+                if (id == null || ecrepo.GetExercisebyId(id) ==null)
                 {
-                    throw new Exception("Error at get DeleteExcercise");
+                    return false;
                 }
                 else
                 {
@@ -36,9 +36,9 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (bodyPart == null)
+                if (bodyPart == null || ecrepo.GetExercisebyBodyPart(bodyPart) == null)
                 {
-                    throw new Exception("Error at get GetExercisebyBodyPart");
+                    return null;
                 }
                 else
                 {
@@ -55,9 +55,9 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (id == null)
+                if (id == null|| ecrepo.GetExercisebyId(id) == null)
                 {
-                    throw new Exception("Error at get GetExercisebyId");
+                    return null;
                 }
                 else
                 {
@@ -74,9 +74,9 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (exercise == null)
+                if (exercise == null || ecrepo.GetExercisebyId(exercise.ExerciseId) == null)
                 {
-                    throw new Exception("Error at get UpdateExcercise");
+                    return false;
                 }
                 else
                 {

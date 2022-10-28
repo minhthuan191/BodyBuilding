@@ -14,13 +14,13 @@ namespace BodyBuildingApp.Service
         {
             this.tnrepo = tnrepo;
         }
-        public bool DeleteTrainer(Trainer trainerId)
+        public bool DeleteTrainer(string trainerId)
         {
             try
             {
-                if (trainerId == null)
+                if (trainerId == null || tnrepo.GetTrainerById(trainerId) == null)
                 {
-                    throw new Exception("Error at get DeleteTrainer");
+                   return false;
                 }
                 else
                 {
@@ -37,9 +37,9 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (trainerId == null)
+                if (trainerId == null || tnrepo.GetTrainerById(trainerId) == null)
                 {
-                    throw new Exception("Error at get GetTrainerById");
+                    return null;
                 }
                 else
                 {
@@ -56,9 +56,9 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (trainer == null)
+                if (trainer == null || tnrepo.GetTrainerById(trainer.TrainerId) == null )
                 {
-                    throw new Exception("Error at get UpdateTrainer");
+                    return false;
                 }
                 else
                 {

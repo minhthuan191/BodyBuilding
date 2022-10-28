@@ -17,6 +17,7 @@ namespace BodyBuildingApp.Service
 
         public List<Customer> GetAllCustomerByRole(string role)
         {
+           
             return this.CustomerRepository.GetListCustomerByRole(role);
         }
 
@@ -27,8 +28,8 @@ namespace BodyBuildingApp.Service
 
         public Customer GetCustomerById(string id)
         {
-            if(id == null){
-                throw new Exception("error at get customer by id");
+            if(CustomerRepository.GetCustomerById(id) == null){
+                return null;
             }else
             {
                 return CustomerRepository.GetCustomerById(id);

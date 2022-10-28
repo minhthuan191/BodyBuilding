@@ -22,9 +22,9 @@ namespace BodyBuildingApp.Service
 
         public BodyStatus GetBodyStatusByBodyID(string bodyid)
         {
-            if(bodyid == null)
+            if (bodyid == null || bsrepo.GetBodyStatusByBodyID == null)
             {
-                throw new Exception("Error at get Body Status by Body ID");
+                return null; 
             }
             else
             {
@@ -34,20 +34,20 @@ namespace BodyBuildingApp.Service
 
         public BodyStatus GetBodyStatusByUserId(string userId)
         {
-            if(userId == null)
+            if(userId == null || bsrepo.GetBodyStatusByUserId(userId) == null)
             {
-                throw new Exception("Error at get Body Status by User ID");
+                return null;
             }
             else
             {
                 return bsrepo.GetBodyStatusByUserId(userId);
             }
         }
-        public bool Deletebody(BodyStatus bodyid)
+        public bool Deletebody(string bodyid)
         {
-            if (bodyid == null) 
+            if (bodyid == null || bsrepo.GetBodyStatusByUserId(bodyid) == null) 
             {
-                throw new Exception("Error at DeletaBody ");
+                return false ;
                
             }
             else
@@ -59,9 +59,9 @@ namespace BodyBuildingApp.Service
 
         public bool Updatebody(BodyStatus bodyStatus)
         {
-            if (bodyStatus == null) 
+            if (bodyStatus == null || bsrepo.GetBodyStatusByUserId(bodyStatus.BodyStatusId) == null) 
             {
-                throw new Exception("Error at UpdateBody ");
+                return false;
                
             }
             else

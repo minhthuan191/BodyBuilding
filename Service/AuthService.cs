@@ -10,10 +10,10 @@ namespace BodyBuildingApp.Service
         private readonly DBContext DBContext;
         private readonly ICustomerService CustomerService;
         private readonly IJwtService JWTService;
-        public AuthService(DBContext dBContext, ICustomerService customerService, IJwtService jwtService)
+        public AuthService(DBContext dBContext, ICustomerService CustomerService, IJwtService jwtService)
         {
             this.DBContext = dBContext;
-            this.CustomerService = customerService;
+            this.CustomerService = CustomerService;
             this.JWTService = jwtService;
         }
 

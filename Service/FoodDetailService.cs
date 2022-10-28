@@ -2,6 +2,7 @@
 using BodyBuildingApp.Repository;
 using BodyBuildingApp.Service.Interface;
 using System;
+using System.Xml.Linq;
 
 namespace BodyBuildingApp.Service
 {
@@ -12,17 +13,17 @@ namespace BodyBuildingApp.Service
         {
             this.fdrepo = fsrepo;
         }
-        public bool DeleteFoodDetail(FoodDetail foodDId)
+        public bool DeleteFoodDetail(string foodname)
         {
             try
             {
-                if (foodDId == null)
+                if (foodname == null || fdrepo.GetFoodbyName(foodname) == null)
                 {
-                    throw new Exception("Error at get DeleteExcercise");
+                    return false;
                 }
                 else
                 {
-                    return fdrepo.DeleteFoodDetail(foodDId);
+                    return fdrepo.DeleteFoodDetail(foodname);
                 }
             }
             catch (Exception ex)
@@ -35,9 +36,9 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (calories == null)
+                if (calories == null || fdrepo.GetFoodByCalories(calories) == null)
                 {
-                    throw new Exception("Error at get GetFoodByCalories");
+                    return null;
                 }
                 else
                 {
@@ -54,9 +55,9 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (name == null)
+                if (name == null || fdrepo.GetFoodbyName(name) == null) 
                 {
-                    throw new Exception("Error at get GetFoodbyName");
+                    return null;
                 }
                 else
                 {
@@ -73,9 +74,9 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (foodDetail == null)
+                if (foodDetail == null || fdrepo.GetFoodbyName(foodDetail.FoodName) == null)
                 {
-                    throw new Exception("Error at get UpdateFoodDetail");
+                    return false;
                 }
                 else
                 {

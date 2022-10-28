@@ -1,6 +1,7 @@
 ﻿using BodyBuildingApp.Models;
 using BodyBuildingApp.Service.Interface;
 using BodyBuildingApp.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,6 +11,7 @@ namespace BodyBuildingApp.Repository
     { 
 
         private readonly DBContext DBContext;
+
         public CustomerRepository(DBContext dBContext)
         {
         this.DBContext = dBContext;
@@ -18,12 +20,20 @@ namespace BodyBuildingApp.Repository
         public Customer GetCustomerByEmail(string email)
         {
             Customer Customer = this.DBContext.Customer.FirstOrDefault(item => item.Email == email);
+            if(Customer == null)
+            {
+                return null;
+            }
             return Customer;
         }
 
         public Customer GetCustomerById(string id)
         {
             Customer Customer = this.DBContext.Customer.FirstOrDefault(item => item.UserId == id);
+            if(Customer == null)
+            {
+                return null;
+            }
             return Customer;
         }
 

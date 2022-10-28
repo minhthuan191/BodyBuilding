@@ -14,12 +14,12 @@ namespace BodyBuildingApp.Service
             this.dfrepo = dfrepo;
         }
 
-        public bool DeleteDailyFood(DailyFood foodid)
+        public bool DeleteDailyFood(string foodid)
         {
             try
             {
-                if (foodid == null)
-                    throw new Exception("Error at Delete Daily Food");
+                if (foodid == null || dfrepo.GetDailyFoodbyID(foodid) == null)
+                    return false;
                 else
                 {
                     return dfrepo.DeleteDailyFood(foodid);
@@ -35,8 +35,8 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (foodname == null)
-                    throw new Exception("Error at Get Daily Food By Name");
+                if (foodname == null || dfrepo.GetDailyFoodByFoodName(foodname) == null)
+                    return null;
                 else
                 {
                     return dfrepo.GetDailyFoodByFoodName(foodname);
@@ -52,8 +52,8 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (foodId == null)
-                    throw new Exception("Error at Get daily food by id");
+                if (foodId == null || dfrepo.GetDailyFoodbyID(foodId) == null)
+                    return null;
                 else
                 {
                     return dfrepo.GetDailyFoodbyID(foodId);
@@ -69,8 +69,8 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (timetoeat == null)
-                    throw new Exception("Error at Get Food By Time");
+                if (timetoeat == null || dfrepo.GetFoodByTime(timetoeat) == null)
+                    return null;
                 else
                 {
                     return dfrepo.GetFoodByTime(timetoeat);
@@ -86,8 +86,8 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (dailyFood == null)
-                    throw new Exception("Error at Update Daily Food");
+                if (dailyFood == null || dfrepo.GetDailyFoodbyID(dailyFood.DailyFoodId) == null)
+                    return false;
                 else
                 {
                     return dfrepo.UpdateDailyFood(dailyFood);

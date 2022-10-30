@@ -41,9 +41,9 @@ namespace BodyBuildingApp.Controllers
         }
 
         [HttpDelete]
-        public bool DeleteBody(BodyStatus bodyStatus)
+        public bool DeleteBody(string id)
         {
-           return bodyStatusService.Deletebody(bodyStatus);
+           return bodyStatusService.Deletebody(id);
         }
     }
 }

@@ -27,7 +27,14 @@ namespace BodyBuildingApp.Controllers
         [HttpGet]
         public Customer GetcustomerbyID(string id)
         {
-            return CustomerService.GetCustomerById(id);
+            if( CustomerService.GetCustomerById(id) == null)
+            {
+                throw new Exception(" Id not found or not exist");
+            }
+            else
+            {
+                return CustomerService.GetCustomerById(id);
+            }
         }
 
         [HttpPost("updateinfo")]

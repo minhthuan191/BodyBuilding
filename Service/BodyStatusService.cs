@@ -4,6 +4,7 @@ using BodyBuildingApp.Repository;
 using System.Collections.Generic;
 using System;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.EntityFrameworkCore;
 
 namespace BodyBuildingApp.Service
 {
@@ -43,30 +44,45 @@ namespace BodyBuildingApp.Service
                 return bsrepo.GetBodyStatusByUserId(userId);
             }
         }
-        public bool Deletebody(string bodyid)
+        public bool Deletebody(BodyStatus bodyStatus)
         {
-            if (bodyid == null || bsrepo.GetBodyStatusByUserId(bodyid) == null) 
+            if (bodyStatus == null) 
             {
                 return false ;
                
             }
             else
             {
-                bsrepo.Deletebody(bodyid);
+                bsrepo.Deletebody(bodyStatus);
                 return true;
             }
         }
 
         public bool Updatebody(BodyStatus bodyStatus)
+
         {
-            if (bodyStatus == null || bsrepo.GetBodyStatusByUserId(bodyStatus.BodyStatusId) == null) 
+            if (bodyStatus == null)
             {
-                return false;
-               
+                throw new Exception("null value");
+
             }
             else
             {
                 bsrepo.Updatebody(bodyStatus);
+                return true;
+            }
+        }
+
+        public bool Createbody(BodyStatus bodyStatus)
+        {
+            if (bodyStatus == null)
+            {
+                throw new Exception("null value");
+
+            }
+            else
+            {
+                bsrepo.CreateBodyStatus(bodyStatus);
                 return true;
             }
         }

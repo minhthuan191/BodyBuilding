@@ -9,7 +9,9 @@ namespace BodyBuildingApp.Service.Interface
         public BodyStatus GetBodyStatusByBodyID(string bodyid);
         public bool Updatebody(BodyStatus bodyStatus);
 
-        public bool Deletebody(string bodyid);
+        public bool Createbody(BodyStatus bodyStatus);
+
+        public bool Deletebody(BodyStatus bodyStatus);
 
         public List<BodyStatus> GetAllBodyStatus();
 

@@ -14,11 +14,24 @@ namespace BodyBuildingApp.Service
         {
             this.tnrepo = tnrepo;
         }
+
+        public bool CreateTrainer(Trainer trainer)
+        {
+            if (trainer == null)
+            {
+                return false;
+            }
+            else
+            {
+                return tnrepo.CreateTrainer(trainer);
+            }
+        }
+
         public bool DeleteTrainer(string trainerId)
         {
             try
             {
-                if (trainerId == null || tnrepo.GetTrainerById(trainerId) == null)
+                if (trainerId == null)
                 {
                    return false;
                 }
@@ -56,7 +69,7 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (trainer == null || tnrepo.GetTrainerById(trainer.TrainerId) == null )
+                if (trainer == null)
                 {
                     return false;
                 }

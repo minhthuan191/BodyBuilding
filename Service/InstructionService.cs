@@ -14,11 +14,23 @@ namespace BodyBuildingApp.Service
             this.insrepo = insrepo;
         }
 
+        public bool CreateInstruction(Instruction instruction)
+        {
+            if (instruction == null)
+            {
+                return false;
+            }
+            else
+            {
+                return insrepo.CreateInstruction(instruction);
+            }
+        }
+
         public bool DeleteInstruction(string insId)
         {
             try
             {
-                if (insId == null || insrepo.GetInstructionbyID(insId)==null)
+                if (insId == null)
                 {
                     return false;
                 }
@@ -80,7 +92,7 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (instruction == null || insrepo.GetInstructionbyID(instruction.InstructionId) == null)
+                if (instruction == null)
                 {
                     return false;
                 }

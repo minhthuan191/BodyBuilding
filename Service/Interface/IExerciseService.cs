@@ -8,6 +8,8 @@ namespace BodyBuildingApp.Service.Interface
 
         public Exercise GetExercisebyBodyPart(string bodyPart);
 
+        public bool CreateExcercise(Exercise exercise);
+
         public bool UpdateExcercise(Exercise exercise);
 
         public bool DeleteExcercise(string id);

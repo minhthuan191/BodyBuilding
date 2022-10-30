@@ -2,6 +2,8 @@
 using BodyBuildingApp.Service.Interface;
 using BodyBuildingApp.Utils;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace BodyBuildingApp.Repository
 {
@@ -12,14 +14,7 @@ namespace BodyBuildingApp.Repository
         {
             this.DBContext = dBContext;
         }
-        public bool DeleteExcercise(string id)
-        {
-            if(GetExercisebyId(id) == null) return false;
-            this.DBContext.Remove(id);
-            this.DBContext.SaveChanges();
-            return true;
-        }
-
+     
         public Exercise GetExercisebyBodyPart(string bodyPart)
         {
             Exercise exercise = this.DBContext.Exercise.FirstOrDefault(item => item.BodyPart == bodyPart);
@@ -33,11 +28,34 @@ namespace BodyBuildingApp.Repository
             if (GetExercisebyId == null) return null;
             return exercise;
         }
-
+        public bool CreateExercise(Exercise exercise)
+        {
+            this.DBContext.Entry(exercise).State = EntityState.Modified;
+            if(GetExercisebyId(exercise.ExerciseId) != null)
+            {
+                this.DBContext.Exercise.Add(exercise);
+                this.DBContext.SaveChanges();
+                return true;
+            }
+            else
+            {
+                throw new Exception("error at repository");
+            }
+        }
         public bool UpdateExcercise(Exercise exercise)
         {
-            if (GetExercisebyId(exercise.ExerciseId) == null) return false;
+            this.DBContext.Entry(exercise).State = EntityState.Modified;
+            if (GetExercisebyId(exercise.ExerciseId) == null) throw new Exception("error at repository");
             this.DBContext.Update(exercise);
+            this.DBContext.SaveChanges();
+            return true;
+        }
+
+        public bool DeleteExcercise(string id)
+        {
+            var exercise = GetExercisebyId(id);
+            if (exercise == null) throw new Exception("error at repository");
+            this.DBContext.Exercise.Remove(exercise);
             this.DBContext.SaveChanges();
             return true;
         }

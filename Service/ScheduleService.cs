@@ -14,11 +14,23 @@ namespace BodyBuildingApp.Service
             this.schrepo = schrepo;
         }
 
+        public bool CreateSchedule(Schedule schedule)
+        {
+            if (schedule == null)
+            {
+                return false;
+            }
+            else
+            {
+                return schrepo.CreateSchedule(schedule);
+            }
+        }
+
         public bool DeleteSchedule(string scheduleId)
         {
             try
             {
-                if (scheduleId == null || schrepo.GetScheduleById(scheduleId) ==null)
+                if (scheduleId == null)
                 {
                     return false;
                 }
@@ -75,7 +87,7 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (schedule == null || schrepo.GetScheduleById(schedule.ScheduleId) == null)
+                if (schedule == null)
                 {
                     return false ;
                 }

@@ -2,6 +2,8 @@
 using BodyBuildingApp.Service.Interface;
 using BodyBuildingApp.Utils;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace BodyBuildingApp.Repository
 {
@@ -13,26 +15,40 @@ namespace BodyBuildingApp.Repository
         {
             DBContext = dBContext;
         }
-
-        public bool DeleteTarget(string targetId)
-        {
-            if (GetTargetbyID(targetId) == null) return false;
-            this.DBContext.Remove(targetId);
-            this.DBContext.SaveChanges();
-            return true;
-        }
-
         public Target GetTargetbyID(string targetId)
         {
             Target target = this.DBContext.Target.FirstOrDefault(item => item.TargetId == targetId);
             if(target== null) return null;
             return target;
         }
-
+        public bool CreateTarget(Target target)
+        {
+            this.DBContext.Entry(target).State = EntityState.Modified;
+            if(GetTargetbyID(target.TargetId) != null)
+            {
+                this.DBContext.Target.Add(target);
+                this.DBContext.SaveChanges();
+                return true;
+            }
+            else
+            {
+                throw new Exception("error at repository");
+            }
+        }
         public bool UpdateTarget(Target target)
         {
-            if (GetTargetbyID(target.TargetId) == null) return false;
+            this.DBContext.Entry(target).State = EntityState.Modified;
+            if (GetTargetbyID(target.TargetId) == null) throw new Exception("error at repository");
             this.DBContext.Update(target);
+            this.DBContext.SaveChanges();
+            return true;
+        } 
+
+        public bool DeleteTarget(string targetId)
+        {
+            var target = GetTargetbyID(targetId);
+            if (target == null) throw new Exception("error at repository");
+            this.DBContext.Target.Remove(target);
             this.DBContext.SaveChanges();
             return true;
         }

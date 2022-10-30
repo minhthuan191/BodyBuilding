@@ -8,6 +8,8 @@ namespace BodyBuildingApp.Service.Interface
 
         public DailyFood GetFoodByTime(string timetoeat);
 
+        public bool CreateDailyFood(DailyFood dailyFood);
+
         public bool UpdateDailyFood(DailyFood dailyFood);
 
         public bool DeleteDailyFood(string foodid);

@@ -6,6 +6,8 @@ namespace BodyBuildingApp.Service.Interface
     {
         public Session GetSessionById(string sessionId);
 
+        public bool CreateSession(Session session);
+
         public bool UpdateSession(Session session);
 
         public bool DeleteSession(string sessionId);

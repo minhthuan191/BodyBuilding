@@ -13,11 +13,23 @@ namespace BodyBuildingApp.Service
             this.sessrepo = sessrepo;
         }
 
+        public bool CreateSession(Session session)
+        {
+            if (session == null)
+            {
+                return false;
+            }
+            else
+            {
+                return sessrepo.CreateSession(session);
+            }
+        }
+
         public bool DeleteSession(string sessionId)
         {
             try
             {
-                if (sessionId == null || sessrepo.GetSessionById(sessionId) == null)
+                if (sessionId == null)
                 {
                     return false ;
                 }
@@ -55,7 +67,7 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (session == null || sessrepo.GetSessionById(session.SessionId) == null)
+                if (session == null)
                 {
                     return false;
                 }

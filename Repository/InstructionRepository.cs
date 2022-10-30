@@ -3,6 +3,8 @@ using BodyBuildingApp.Service.Interface;
 using BodyBuildingApp.Utils;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace BodyBuildingApp.Repository
 {
@@ -13,14 +15,7 @@ namespace BodyBuildingApp.Repository
         {
             this.DBContext = dBContext;
         }
-        public bool DeleteInstruction(string insId)
-        {
-            if (GetInstructionbyID(insId) == null) return false;
-            this.DBContext.Remove(insId);
-            this.DBContext.SaveChanges();
-            return true;
-        }
-
+      
         public Instruction GetInstructionbyID(string id)
         {
             Instruction instruction = this.DBContext.Instruction.FirstOrDefault(item => item.InstructionId == id);
@@ -40,11 +35,34 @@ namespace BodyBuildingApp.Repository
             if (instruction == null) return null;
             return instruction;
         }
-
+        public bool CreateInstruction(Instruction instruction)
+        {
+            this.DBContext.Entry(instruction).State = EntityState.Modified;
+            if(GetInstructionbyID(instruction.InstructionId) != null)
+            {
+                this.DBContext.Instruction.Add(instruction);
+                this.DBContext.SaveChanges();
+                return true;
+            }
+            else
+            {
+                throw new Exception("error at repository");
+            }
+        }
         public bool UpdateInstruction(Instruction instruction)
         {
-            if (GetInstructionbyID(instruction.InstructionId) == null) return false;
+            this.DBContext.Entry(instruction).State = EntityState.Modified;
+            if (GetInstructionbyID(instruction.InstructionId) == null) throw new Exception("error at repository");
             this.DBContext.Update(instruction);
+            this.DBContext.SaveChanges();
+            return true;
+        }
+
+        public bool DeleteInstruction(string insId)
+        {
+            var instruction = GetInstructionbyID(insId);
+            if (instruction == null) throw new Exception("error at repository");
+            this.DBContext.Instruction.Remove(instruction);
             this.DBContext.SaveChanges();
             return true;
         }

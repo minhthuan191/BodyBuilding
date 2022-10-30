@@ -11,7 +11,7 @@ namespace BodyBuildingApp.Service.Interface
 
         public bool Createbody(BodyStatus bodyStatus);
 
-        public bool Deletebody(BodyStatus bodyStatus);
+        public bool Deletebody(string id);
 
         public List<BodyStatus> GetAllBodyStatus();
 

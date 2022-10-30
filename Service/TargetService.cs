@@ -14,13 +14,13 @@ namespace BodyBuildingApp.Service
             this.tgrepo = tgrepo;
         }
 
-        public bool DeleteTarget(Target targetId)
+        public bool DeleteTarget(string targetId)
         {
             try
             {
-                if (targetId == null)
+                if (targetId == null || tgrepo.GetTargetbyID(targetId) == null)
                 {
-                    throw new Exception("Error at get DeleteTarget");
+                    return false;
                 }
                 else
                 {
@@ -38,9 +38,9 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (targetId == null)
+                if (targetId == null || tgrepo.GetTargetbyID(targetId) == null)
                 {
-                    throw new Exception("Error at get GetTargetbyID");
+                    return null ;
                 }
                 else
                 {
@@ -58,9 +58,9 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (target == null)
+                if (target == null || tgrepo.GetTargetbyID(target.TargetId) == null)
                 {
-                    throw new Exception("Error at get UpdateTarget");
+                    return false;
                 }
                 else
                 {

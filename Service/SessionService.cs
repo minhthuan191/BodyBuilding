@@ -13,13 +13,13 @@ namespace BodyBuildingApp.Service
             this.sessrepo = sessrepo;
         }
 
-        public bool DeleteSession(Session sessionId)
+        public bool DeleteSession(string sessionId)
         {
             try
             {
-                if (sessionId == null)
+                if (sessionId == null || sessrepo.GetSessionById(sessionId) == null)
                 {
-                    throw new Exception("Error at get DeleteSession");
+                    return false ;
                 }
                 else
                 {
@@ -36,9 +36,9 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (sessionId == null)
+                if (sessionId == null || sessrepo.GetSessionById(sessionId) == null)
                 {
-                    throw new Exception("Error at get GetSessionById");
+                    return null;
                 }
                 else
                 {
@@ -55,9 +55,9 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (session == null)
+                if (session == null || sessrepo.GetSessionById(session.SessionId) == null)
                 {
-                    throw new Exception("Error at get UpdateSession");
+                    return false;
                 }
                 else
                 {

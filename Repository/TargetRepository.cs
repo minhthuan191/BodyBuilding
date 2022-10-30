@@ -14,8 +14,9 @@ namespace BodyBuildingApp.Repository
             DBContext = dBContext;
         }
 
-        public bool DeleteTarget(Target targetId)
+        public bool DeleteTarget(string targetId)
         {
+            if (GetTargetbyID(targetId) == null) return false;
             this.DBContext.Remove(targetId);
             this.DBContext.SaveChanges();
             return true;
@@ -24,11 +25,13 @@ namespace BodyBuildingApp.Repository
         public Target GetTargetbyID(string targetId)
         {
             Target target = this.DBContext.Target.FirstOrDefault(item => item.TargetId == targetId);
+            if(target== null) return null;
             return target;
         }
 
         public bool UpdateTarget(Target target)
         {
+            if (GetTargetbyID(target.TargetId) == null) return false;
             this.DBContext.Update(target);
             this.DBContext.SaveChanges();
             return true;

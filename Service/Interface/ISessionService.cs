@@ -8,6 +8,6 @@ namespace BodyBuildingApp.Service.Interface
 
         public bool UpdateSession(Session session);
 
-        public bool DeleteSession(Session sessionId);
+        public bool DeleteSession(string sessionId);
     }
 }

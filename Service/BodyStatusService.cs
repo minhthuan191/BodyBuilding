@@ -4,6 +4,7 @@ using BodyBuildingApp.Repository;
 using System.Collections.Generic;
 using System;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.EntityFrameworkCore;
 
 namespace BodyBuildingApp.Service
 {
@@ -22,9 +23,9 @@ namespace BodyBuildingApp.Service
 
         public BodyStatus GetBodyStatusByBodyID(string bodyid)
         {
-            if(bodyid == null)
+            if (bodyid == null || bsrepo.GetBodyStatusByBodyID == null)
             {
-                throw new Exception("Error at get Body Status by Body ID");
+                return null; 
             }
             else
             {
@@ -34,39 +35,54 @@ namespace BodyBuildingApp.Service
 
         public BodyStatus GetBodyStatusByUserId(string userId)
         {
-            if(userId == null)
+            if(userId == null || bsrepo.GetBodyStatusByUserId(userId) == null)
             {
-                throw new Exception("Error at get Body Status by User ID");
+                return null;
             }
             else
             {
                 return bsrepo.GetBodyStatusByUserId(userId);
             }
         }
-        public bool Deletebody(BodyStatus bodyid)
+        public bool Deletebody(BodyStatus bodyStatus)
         {
-            if (bodyid == null) 
+            if (bodyStatus == null) 
             {
-                throw new Exception("Error at DeletaBody ");
+                return false ;
                
             }
             else
             {
-                bsrepo.Deletebody(bodyid);
+                bsrepo.Deletebody(bodyStatus);
                 return true;
             }
         }
 
         public bool Updatebody(BodyStatus bodyStatus)
+
         {
-            if (bodyStatus == null) 
+            if (bodyStatus == null)
             {
-                throw new Exception("Error at UpdateBody ");
-               
+                throw new Exception("null value");
+
             }
             else
             {
                 bsrepo.Updatebody(bodyStatus);
+                return true;
+            }
+        }
+
+        public bool Createbody(BodyStatus bodyStatus)
+        {
+            if (bodyStatus == null)
+            {
+                throw new Exception("null value");
+
+            }
+            else
+            {
+                bsrepo.CreateBodyStatus(bodyStatus);
                 return true;
             }
         }

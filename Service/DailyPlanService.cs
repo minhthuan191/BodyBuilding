@@ -17,8 +17,8 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (id == null)
-                    throw new Exception("Error at DeleteDailyPlan");
+                if (id == null || dlrepo.GetDailybyPlanID(id) == null)
+                    return false;
                 else
                 {
                     return dlrepo.DeleteDailyPlan(id);
@@ -34,8 +34,8 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (date == null)
-                    throw new Exception("Error at GetDailybyDate");
+                if (date == null || dlrepo.GetDailybyDate(date) == null)
+                    return null ;
                 else
                 {
                     return dlrepo.GetDailybyDate(date);
@@ -51,8 +51,8 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (id == null)
-                    throw new Exception("Error at GetDailybyPlanID");
+                if (id == null || dlrepo.GetDailybyPlanID(id) == null)
+                    return null;
                 else
                 {
                     return dlrepo.GetDailybyPlanID(id);
@@ -68,8 +68,8 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (id == null)
-                    throw new Exception("Error at GetDailybyUserID");
+                if (id == null || dlrepo.GetDailybyUserID(id) == null)
+                    return null;
                 else
                 {
                     return dlrepo.GetDailybyUserID(id);
@@ -85,8 +85,8 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (dailyPlan == null)
-                    throw new Exception("Error at UpdateDailyPlan");
+                if (dailyPlan == null || dlrepo.GetDailybyPlanID(dailyPlan.DailyFoodId) == null)
+                    return false;
                 else
                 {
                     return dlrepo.UpdateDailyPlan(dailyPlan);

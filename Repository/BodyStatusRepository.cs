@@ -1,5 +1,6 @@
 ﻿using BodyBuildingApp.Models;
 using BodyBuildingApp.Utils;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,19 @@ namespace BodyBuildingApp.Repository
         {
             this.DBContext = dBContext;
         }
-        public bool Deletebody(BodyStatus bodyid)
+        public bool Deletebody(BodyStatus body)
         {
-                this.DBContext.Remove(bodyid);
+            this.DBContext.Entry(body).State = EntityState.Modified;
+            if (GetBodyStatusByBodyID(body.BodyStatusId) == null)
+            {
+                throw new Exception(" Id not exist");
+            }
+            else
+            {
+                this.DBContext.BodyStatus.Remove(body);
                 this.DBContext.SaveChanges();
                 return true;
+            }
             
         }
 
@@ -30,22 +39,48 @@ namespace BodyBuildingApp.Repository
         public BodyStatus GetBodyStatusByBodyID(string bodyid)
         {
             BodyStatus bodystatus = this.DBContext.BodyStatus.FirstOrDefault(item => item.BodyStatusId == bodyid);
+            if (bodystatus == null) return null;
             return bodystatus;
         }
+
+
 
         public BodyStatus GetBodyStatusByUserId(string userId)
         {
             BodyStatus bodystatus = this.DBContext.BodyStatus.FirstOrDefault(item => item.UserId == userId);
+            if (bodystatus == null) return null;
             return bodystatus;
 
         }
 
-        public bool Updatebody(BodyStatus bodyStatus)
-        {  
+        public bool CreateBodyStatus(BodyStatus bodyStatus)
+        {
             
+            if(GetBodyStatusByBodyID(bodyStatus.BodyStatusId) != null) 
+            {
+                throw new Exception("Id is exist");
+            }
+            else
+            {
+                this.DBContext.BodyStatus.Add(bodyStatus);
+                this.DBContext.SaveChanges();
+                return true;
+            }
+        }
+
+        public bool Updatebody(BodyStatus bodyStatus)
+        {
+            this.DBContext.Entry(bodyStatus).State = EntityState.Modified;
+            if (GetBodyStatusByBodyID(bodyStatus.BodyStatusId) == null)
+            {
+                throw new Exception ("Id is not exist");
+            }
+            else
+            {
                 this.DBContext.BodyStatus.Update(bodyStatus);
                 this.DBContext.SaveChanges();
                 return true;
+            }
 
         }
     }

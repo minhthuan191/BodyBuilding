@@ -10,6 +10,6 @@ namespace BodyBuildingApp.Service.Interface
 
         public bool UpdateFoodDetail(FoodDetail foodDetail);
 
-        public bool DeleteFoodDetail(FoodDetail foodDId);
+        public bool DeleteFoodDetail(string foodDId);
     }
 }

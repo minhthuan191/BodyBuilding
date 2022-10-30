@@ -14,8 +14,9 @@ namespace BodyBuildingApp.Repository
             DBContext = dBContext;
         }
 
-        public bool DeleteSession(Session sessionId)
+        public bool DeleteSession(string sessionId)
         {
+            if (GetSessionById(sessionId) == null) return false;
             this.DBContext.Remove(sessionId);
             this.DBContext.SaveChanges();
             return true;
@@ -24,11 +25,13 @@ namespace BodyBuildingApp.Repository
         public Session GetSessionById(string sessionId)
         {
             Session session = this.DBContext.Session.FirstOrDefault(item => item.SessionId == sessionId);
+            if(session == null) return null;
             return session;
         }
 
         public bool UpdateSession(Session session)
         {
+            if (GetSessionById(session.SessionId) == null) return false;
             this.DBContext.Update(session);
             this.DBContext.SaveChanges();
             return true;

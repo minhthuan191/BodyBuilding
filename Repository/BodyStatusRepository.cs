@@ -15,19 +15,10 @@ namespace BodyBuildingApp.Repository
             this.DBContext = dBContext;
         }
 
-        public bool DeleteBody(string id)
+        public bool DeleteBody(BodyStatus bodyStatus)
         {
-            var bodystatus =  DBContext.BodyStatus.FirstOrDefault(x => x.BodyStatusId == id);
-            if (bodystatus != null)
-            {
-                DBContext.BodyStatus.Remove(bodystatus);
-                DBContext.SaveChanges();
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+                DBContext.BodyStatus.Remove(bodyStatus);
+                return DBContext.SaveChanges() > 0;
         }
 
         public List<BodyStatus> GetAllBodyStatus()
@@ -55,25 +46,18 @@ namespace BodyBuildingApp.Repository
 
         public bool CreateBodyStatus(BodyStatus bodyStatus)
         {
+             this.DBContext.BodyStatus.Add(bodyStatus);
+             return this.DBContext.SaveChanges() > 0;
+                
             
-            if(GetBodyStatusByBodyID(bodyStatus.BodyStatusId) != null) 
-            {
-                throw new Exception("Id is exist");
-            }
-            else
-            {
-                this.DBContext.BodyStatus.Add(bodyStatus);
-                this.DBContext.SaveChanges();
-                return true;
-            }
         }
 
         public bool Updatebody(BodyStatus bodyStatus)
         {
-            this.DBContext.Entry(bodyStatus).State = EntityState.Modified;
-            if (GetBodyStatusByBodyID(bodyStatus.BodyStatusId) == null)
+            
+            if (bodyStatus == null)
             {
-                throw new Exception ("Id is not exist");
+                return false;
             }
             else
             {

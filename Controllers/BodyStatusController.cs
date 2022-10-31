@@ -1,11 +1,17 @@
-﻿using BodyBuildingApp.Models;
+﻿using BodyBuildingApp.Auth;
+using BodyBuildingApp.Controllers.DTO;
+using BodyBuildingApp.Models;
 using BodyBuildingApp.Service;
 using BodyBuildingApp.Service.Interface;
+using BodyBuildingApp.Utils.Common;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
+
 namespace BodyBuildingApp.Controllers
 {
+    [ServiceFilter(typeof(AuthGuard))]
     [Route("/api/bodystatus")]
     [ApiController]
     public class BodyStatusController : Controller
@@ -29,21 +35,80 @@ namespace BodyBuildingApp.Controllers
             }
         }
         [HttpPut]
-        public bool Updatebody(BodyStatus bodyStatus)
+        public IActionResult HandleUpdateBodyStatus([FromBody]AddBodyStatusDTO body)
         {
-                return bodyStatusService.Updatebody(bodyStatus);
+            var res = new ServerApiResponse<string>();
+
+            ValidationResult result = new AddBodyStatusDTOValidator().Validate(body);
+            if (!result.IsValid)
+            {
+                res.mapDetails(result);
+                return new BadRequestObjectResult(res.getResponse());
+            };
+
+            Customer customer = (Customer)ViewData["user"];
+            var bodyStatus = this.bodyStatusService.GetBodyStatusByUserId(customer.UserId);
+
+            if (bodyStatus == null)
+            {
+                res.setErrorMessage("Cannot find body status of this user");
+                return new NotFoundObjectResult(res.getResponse());
+            }
+
+            bodyStatus.Weight = body.Weight;
+            bodyStatus.Height = body.Height;
+            bodyStatus.Date = DateTime.Now.ToShortDateString();
+
+            this.bodyStatusService.Updatebody(bodyStatus);
+
+            res.setMessage("Update body status success");
+            return new ObjectResult(res.getResponse());
         }
 
         [HttpPost]
-        public bool CreateBodyStatus(BodyStatus bodyStatus)
+        public IActionResult HandleAddBodyStatus([FromBody]AddBodyStatusDTO body)
         {
-            return bodyStatusService.Createbody(bodyStatus);
+            var res = new ServerApiResponse<string>();
+
+            ValidationResult result = new AddBodyStatusDTOValidator().Validate(body);
+            if ( !result.IsValid)
+            {
+                res.mapDetails(result);
+                return new BadRequestObjectResult(res.getResponse());
+            };
+
+            var bodyStatus = new BodyStatus();
+            Customer customer = (Customer)ViewData["user"];
+
+            bodyStatus.BodyStatusId = Guid.NewGuid().ToString();
+            bodyStatus.Weight = body.Weight;
+            bodyStatus .Height = body.Height;
+            bodyStatus.UserId = customer.UserId;
+            bodyStatus.Date = DateTime.Now.ToShortDateString();
+
+            this.bodyStatusService.Createbody(bodyStatus);
+            res.setMessage("Add body status success!");
+            return new ObjectResult(res.getResponse());
         }
 
         [HttpDelete]
-        public bool DeleteBody(string id)
+        public IActionResult HandleDeleteBodyStatus()
         {
-           return bodyStatusService.Deletebody(id);
+            var res = new ServerApiResponse<string>();
+
+            Customer customer = (Customer)ViewData["user"];
+            var bodyStatus = this.bodyStatusService.GetBodyStatusByUserId(customer.UserId);
+
+            if (bodyStatus == null)
+            {
+                res.setErrorMessage("Cannot find body status of this user");
+                return new NotFoundObjectResult(res.getResponse());
+            }
+
+            this.bodyStatusService.Deletebody(bodyStatus);
+
+            res.setMessage("Delete bodystatus success");
+            return new ObjectResult(res.getResponse());
         }
     }
 }

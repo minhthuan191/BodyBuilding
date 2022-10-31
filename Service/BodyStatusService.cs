@@ -44,47 +44,19 @@ namespace BodyBuildingApp.Service
                 return bsrepo.GetBodyStatusByUserId(userId);
             }
         }
-        public bool Deletebody(string id)
+        public bool Deletebody(BodyStatus bodyStatus)
         {
-            if (id == null) 
-            {
-                return false ;
-               
-            }
-            else
-            {
-                bsrepo.DeleteBody(id);
-                return true;
-            }
+            return this.bsrepo.DeleteBody(bodyStatus);
         }
 
         public bool Updatebody(BodyStatus bodyStatus)
-
         {
-            if (bodyStatus == null)
-            {
-                throw new Exception("null value");
-
-            }
-            else
-            {
-                bsrepo.Updatebody(bodyStatus);
-                return true;
-            }
+            return this.bsrepo.Updatebody(bodyStatus);
         }
 
         public bool Createbody(BodyStatus bodyStatus)
         {
-            if (bodyStatus == null)
-            {
-                throw new Exception("null value");
-
-            }
-            else
-            {
-                bsrepo.CreateBodyStatus(bodyStatus);
-                return true;
-            }
+            return this.bsrepo.CreateBodyStatus(bodyStatus);
         }
     }
 }

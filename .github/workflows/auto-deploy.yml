@@ -55,6 +55,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: |
+            cd root
             cd thuan
             docker-compose pull
             docker-compose up -d

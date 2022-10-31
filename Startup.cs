@@ -41,6 +41,8 @@ namespace BodyBuildingApp
 
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<CustomerRepository>();
+            services.AddScoped<IBodyStatusService, BodyStatusService>();
+            services.AddScoped<BodyStatusRepository>();
             services.AddScoped<AuthGuard>();
             services.AddScoped<AuthGuardGuest>();
             services.AddScoped<UserFilter>();

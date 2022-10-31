@@ -39,7 +39,7 @@ namespace BodyBuildingApp.Repository
             }
             else
             {
-                throw new Exception("error at repository")
+                throw new Exception("error at repository");
             }
         }
         public bool UpdateSchedule(Schedule schedule)

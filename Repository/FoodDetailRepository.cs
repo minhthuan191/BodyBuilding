@@ -3,7 +3,7 @@ using BodyBuildingApp.Service.Interface;
 using BodyBuildingApp.Utils;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using System
+using System;
 
 namespace BodyBuildingApp.Repository
 {

@@ -18,14 +18,14 @@ namespace BodyBuildingApp.Repository
         public Exercise GetExercisebyBodyPart(string bodyPart)
         {
             Exercise exercise = this.DBContext.Exercise.FirstOrDefault(item => item.BodyPart == bodyPart);
-            if (GetExercisebyBodyPart == null) return null;
+            if (exercise == null) return null;
             return exercise;
         }
 
         public Exercise GetExercisebyId(string id)
         {
             Exercise exercise = this.DBContext.Exercise.FirstOrDefault(item => item.ExerciseId == id);
-            if (GetExercisebyId == null) return null;
+            if (exercise == null) return null;
             return exercise;
         }
         public bool CreateExercise(Exercise exercise)

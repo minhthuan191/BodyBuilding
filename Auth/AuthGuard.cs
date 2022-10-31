@@ -70,7 +70,7 @@ namespace BodyBuildingApp.Auth
                         return false;
                     }
                 }
-
+                //
 
                 return true;
 

@@ -14,20 +14,20 @@ namespace BodyBuildingApp.Repository
         {
             this.DBContext = dBContext;
         }
-        public bool Deletebody(BodyStatus body)
+
+        public bool DeleteBody(string id)
         {
-            this.DBContext.Entry(body).State = EntityState.Modified;
-            if (GetBodyStatusByBodyID(body.BodyStatusId) == null)
+            var bodystatus =  DBContext.BodyStatus.FirstOrDefault(x => x.BodyStatusId == id);
+            if (bodystatus != null)
             {
-                throw new Exception(" Id not exist");
+                DBContext.BodyStatus.Remove(bodystatus);
+                DBContext.SaveChanges();
+                return true;
             }
             else
             {
-                this.DBContext.BodyStatus.Remove(body);
-                this.DBContext.SaveChanges();
-                return true;
+                return false;
             }
-            
         }
 
         public List<BodyStatus> GetAllBodyStatus()

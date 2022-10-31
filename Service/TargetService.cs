@@ -14,11 +14,23 @@ namespace BodyBuildingApp.Service
             this.tgrepo = tgrepo;
         }
 
+        public bool CreateTarget(Target target)
+        {
+            if (target == null)
+            {
+                return false;
+            }
+            else
+            {
+                return tgrepo.CreateTarget(target);
+            }
+        }
+
         public bool DeleteTarget(string targetId)
         {
             try
             {
-                if (targetId == null || tgrepo.GetTargetbyID(targetId) == null)
+                if (targetId == null)
                 {
                     return false;
                 }
@@ -58,7 +70,7 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (target == null || tgrepo.GetTargetbyID(target.TargetId) == null)
+                if (target == null)
                 {
                     return false;
                 }

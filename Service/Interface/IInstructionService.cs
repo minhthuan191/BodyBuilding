@@ -10,6 +10,8 @@ namespace BodyBuildingApp.Service.Interface
 
         public Instruction GetInstructionByInsIDandTrainerID(string insId, string trainerId);
 
+        public bool CreateInstruction(Instruction instruction);
+
         public bool UpdateInstruction(Instruction instruction);
 
         public bool DeleteInstruction(string insId);

@@ -14,11 +14,21 @@ namespace BodyBuildingApp.Service
             this.dfrepo = dfrepo;
         }
 
+        public bool CreateDailyFood(DailyFood dailyFood)
+        {
+            if (dailyFood == null)
+                return false;
+            else
+            {
+                return dfrepo.CreateDailyFood(dailyFood);
+            }
+        }
+
         public bool DeleteDailyFood(string foodid)
         {
             try
             {
-                if (foodid == null || dfrepo.GetDailyFoodbyID(foodid) == null)
+                if (foodid == null)
                     return false;
                 else
                 {

@@ -62,6 +62,7 @@ namespace BodyBuildingApp.Controllers
 
             });
             Console.WriteLine("--------------");
+            res.data = token;
             res.setMessage("login success");
 
             return new ObjectResult(res.getResponse());

@@ -14,11 +14,23 @@ namespace BodyBuildingApp.Service
             this.ecrepo = ecrepo;
         }
 
+        public bool CreateExcercise(Exercise exercise)
+        {
+            if (exercise == null)
+            {
+                return false;
+            }
+            else
+            {
+                return ecrepo.CreateExercise(exercise);
+            }
+        }
+
         public bool DeleteExcercise(string id)
         {
             try
             {
-                if (id == null || ecrepo.GetExercisebyId(id) ==null)
+                if (id == null)
                 {
                     return false;
                 }
@@ -74,7 +86,7 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (exercise == null || ecrepo.GetExercisebyId(exercise.ExerciseId) == null)
+                if (exercise == null)
                 {
                     return false;
                 }

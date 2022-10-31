@@ -1,7 +1,9 @@
 ﻿using BodyBuildingApp.Models;
 using BodyBuildingApp.Service.Interface;
 using BodyBuildingApp.Utils;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.CodeAnalysis;
+using System;
 using System.Linq;
 
 namespace BodyBuildingApp.Repository
@@ -16,12 +18,34 @@ namespace BodyBuildingApp.Repository
 
         public bool DeleteDailyFood(string foodid)
         {
-            if (GetDailyFoodbyID(foodid) == null) return false;
-            this.DBContext.Remove(foodid);
+            var dailyfood = DBContext.DailyFood.FirstOrDefault(item => item.DailyFoodId == foodid);
+            if (dailyfood == null) return false;
+            this.DBContext.DailyFood.Remove(dailyfood);
             this.DBContext.SaveChanges();
             return true;
         }
-
+        public bool UpdateDailyFood(DailyFood dailyFood)
+        {
+            this.DBContext.Entry(dailyFood).State = EntityState.Modified;
+            if (GetDailyFoodbyID(dailyFood.DailyFoodId) == null) throw new Exception("id not exist");
+            this.DBContext.DailyFood.Update(dailyFood);
+            this.DBContext.SaveChanges();
+            return true;
+        }
+        public bool CreateDailyFood(DailyFood dailyFood)
+        {
+            this.DBContext.Entry(dailyFood).State = EntityState.Modified;
+            if(GetDailyFoodbyID(dailyFood.DailyFoodId) != null)
+            {
+                this.DBContext.DailyFood.Add(dailyFood);
+                this.DBContext.SaveChanges();
+                return true;
+            }
+            else
+            {
+                throw new Exception("error at repository");
+            }
+        }
         public DailyFood GetDailyFoodByFoodName(string foodname)
         {
             DailyFood food = this.DBContext.DailyFood.FirstOrDefault(item => item.FoodName == foodname);
@@ -42,15 +66,6 @@ namespace BodyBuildingApp.Repository
             DailyFood food = this.DBContext.DailyFood.FirstOrDefault(item => item.TimetoEat == timetoeat);
             if (food == null) return null;
             return food;
-
-        }
-
-        public bool UpdateDailyFood(DailyFood dailyFood)
-        {
-            if (GetDailyFoodbyID(dailyFood.DailyFoodId) == null) return false;
-            this.DBContext.Update(dailyFood);
-            this.DBContext.SaveChanges();
-            return true;
         }
     }
 }

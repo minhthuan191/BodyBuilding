@@ -13,11 +13,21 @@ namespace BodyBuildingApp.Service
             this.dlrepo = dlrepo;
         }
 
+        public bool CreateDailyPlan(DailyPlan dailyPlan)
+        {
+            if (dailyPlan == null )
+                return false;
+            else
+            {
+                return dlrepo.CreateDailyPlan(dailyPlan);
+            };
+        }
+
         public bool DeleteDailyPlan(string id)
         {
             try
             {
-                if (id == null || dlrepo.GetDailybyPlanID(id) == null)
+                if (id == null )
                     return false;
                 else
                 {
@@ -85,7 +95,7 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (dailyPlan == null || dlrepo.GetDailybyPlanID(dailyPlan.DailyFoodId) == null)
+                if (dailyPlan == null)
                     return false;
                 else
                 {

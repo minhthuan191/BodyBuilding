@@ -8,6 +8,8 @@ namespace BodyBuildingApp.Service.Interface
 
         public FoodDetail GetFoodByCalories(string calories);
 
+        public bool CreateFoodDetail(FoodDetail foodDetail);
+
         public bool UpdateFoodDetail(FoodDetail foodDetail);
 
         public bool DeleteFoodDetail(string foodDId);

@@ -23,7 +23,7 @@ namespace BodyBuildingApp.Service
 
         public BodyStatus GetBodyStatusByBodyID(string bodyid)
         {
-            if (bodyid == null || bsrepo.GetBodyStatusByBodyID == null)
+            if (bodyid == null || bsrepo.GetBodyStatusByBodyID(bodyid) == null)
             {
                 return null; 
             }
@@ -44,16 +44,16 @@ namespace BodyBuildingApp.Service
                 return bsrepo.GetBodyStatusByUserId(userId);
             }
         }
-        public bool Deletebody(BodyStatus bodyStatus)
+        public bool Deletebody(string id)
         {
-            if (bodyStatus == null) 
+            if (id == null) 
             {
                 return false ;
                
             }
             else
             {
-                bsrepo.Deletebody(bodyStatus);
+                bsrepo.DeleteBody(id);
                 return true;
             }
         }

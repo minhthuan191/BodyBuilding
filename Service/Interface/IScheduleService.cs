@@ -8,6 +8,8 @@ namespace BodyBuildingApp.Service.Interface
 
         public Schedule GetScheduleByUserID(string userId);
 
+        public bool CreateSchedule(Schedule schedule);
+
         public bool UpdateSchedule(Schedule schedule);
 
         public bool DeleteSchedule(string scheduleId);

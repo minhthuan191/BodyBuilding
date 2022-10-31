@@ -6,6 +6,8 @@ namespace BodyBuildingApp.Service.Interface
     {
         public Trainer GetTrainerById(string trainerId);
 
+        public bool CreateTrainer(Trainer trainer);
+
         public bool UpdateTrainer(Trainer trainer);
 
         public bool DeleteTrainer(string trainerId);

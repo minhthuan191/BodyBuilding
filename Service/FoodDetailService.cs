@@ -13,11 +13,24 @@ namespace BodyBuildingApp.Service
         {
             this.fdrepo = fsrepo;
         }
+
+        public bool CreateFoodDetail(FoodDetail foodDetail)
+        {
+            if (foodDetail == null)
+            {
+                return false;
+            }
+            else
+            {
+                return fdrepo.CreateFoodDetail(foodDetail);
+            }
+        }
+
         public bool DeleteFoodDetail(string foodname)
         {
             try
             {
-                if (foodname == null || fdrepo.GetFoodbyName(foodname) == null)
+                if (foodname == null)
                 {
                     return false;
                 }
@@ -74,7 +87,7 @@ namespace BodyBuildingApp.Service
         {
             try
             {
-                if (foodDetail == null || fdrepo.GetFoodbyName(foodDetail.FoodName) == null)
+                if (foodDetail == null)
                 {
                     return false;
                 }

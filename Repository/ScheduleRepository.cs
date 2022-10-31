@@ -2,6 +2,8 @@
 using BodyBuildingApp.Service.Interface;
 using BodyBuildingApp.Utils;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace BodyBuildingApp.Repository
 {
@@ -11,13 +13,6 @@ namespace BodyBuildingApp.Repository
         public ScheduleRepository (DBContext dBContext)
         {
             this.DBContext = dBContext;
-        }
-        public bool DeleteSchedule(string scheduleId)
-        {
-            if (GetScheduleById(scheduleId) == null) return false;
-            this.DBContext.Remove(scheduleId);
-            this.DBContext.SaveChanges();
-            return true;
         }
 
         public Schedule GetScheduleById(string scheduleId)
@@ -33,11 +28,34 @@ namespace BodyBuildingApp.Repository
             if (schedule == null) return null;
             return schedule;
         }
-
+        public bool CreateSchedule(Schedule schedule)
+        {
+            this.DBContext.Entry(schedule).State = EntityState.Modified;
+            if(GetScheduleById(schedule.ScheduleId) != null)
+            {
+                this.DBContext.Schedule.Add(schedule);
+                this.DBContext.SaveChanges();
+                return true;
+            }
+            else
+            {
+                throw new Exception("error at repository");
+            }
+        }
         public bool UpdateSchedule(Schedule schedule)
         {
-            if (GetScheduleById(schedule.ScheduleId) == null) return false;
+            this.DBContext.Entry(schedule).State = EntityState.Modified;
+            if (GetScheduleById(schedule.ScheduleId) == null) throw new Exception("error at repository");
             this.DBContext.Update(schedule);
+            this.DBContext.SaveChanges();
+            return true;
+        }
+
+        public bool DeleteSchedule(string scheduleId)
+        {
+            var schedule = GetScheduleById(scheduleId);
+            if (schedule == null) throw new Exception("error at repository");
+            this.DBContext.Schedule.Remove(schedule);
             this.DBContext.SaveChanges();
             return true;
         }

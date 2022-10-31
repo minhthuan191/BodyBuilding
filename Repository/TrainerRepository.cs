@@ -2,6 +2,8 @@
 using BodyBuildingApp.Service.Interface;
 using BodyBuildingApp.Utils;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace BodyBuildingApp.Repository
 {
@@ -13,14 +15,6 @@ namespace BodyBuildingApp.Repository
             DBContext = dBContext;
         }
 
-        public bool DeleteTrainer(string trainerId)
-        {
-            if (GetTrainerById(trainerId) == null) return false;
-            this.DBContext.Remove(trainerId);
-            this.DBContext.SaveChanges();
-            return true;
-        }
-
         public Trainer GetTrainerById(string trainerId)
         {
             Trainer trainer = this.DBContext.Trainer.FirstOrDefault(item => item.TrainerId == trainerId);
@@ -28,10 +22,33 @@ namespace BodyBuildingApp.Repository
             return trainer;
         }
 
+        public bool CreateTrainer(Trainer trainer)
+        {
+            this.DBContext.Entry(trainer).State = EntityState.Modified;
+            if(GetTrainerById(trainer.TrainerId) != null)
+            {
+                this.DBContext.Trainer.Add(trainer);
+                this.DBContext.SaveChanges();
+                return true;
+            }
+            else
+            {
+                throw new Exception("error at repository");
+            }
+        }
         public bool UpdateTrainer(Trainer trainer)
         {
-            if (GetTrainerById(trainer.TrainerId) == null) return false;
+            this.DBContext.Entry(trainer).State = EntityState.Modified;
+            if (GetTrainerById(trainer.TrainerId) == null) throw new Exception("error at repository");
             this.DBContext.Update(trainer);
+            this.DBContext.SaveChanges();
+            return true;
+        } 
+        public bool DeleteTrainer(string trainerId)
+        {
+            var trainer = GetTrainerById(trainerId);
+            if (trainer == null) throw new Exception("error at repository");
+            this.DBContext.Trainer.Remove(trainer);
             this.DBContext.SaveChanges();
             return true;
         }

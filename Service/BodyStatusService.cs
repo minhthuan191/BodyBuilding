@@ -23,7 +23,7 @@ namespace BodyBuildingApp.Service
 
         public BodyStatus GetBodyStatusByBodyID(string bodyid)
         {
-            if (bodyid == null || bsrepo.GetBodyStatusByBodyID == null)
+            if (bodyid == null || bsrepo.GetBodyStatusByBodyID(bodyid) == null)
             {
                 return null; 
             }

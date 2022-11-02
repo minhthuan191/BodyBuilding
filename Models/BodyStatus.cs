@@ -25,7 +25,6 @@ namespace BodyBuildingApp.Models
         [StringLength(50)]
         [ForeignKey("Customer")]
         public string UserId { set; get; }
-        public virtual Customer Customer { set; get; }
 
 }
 }

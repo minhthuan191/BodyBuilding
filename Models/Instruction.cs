@@ -20,14 +20,12 @@ namespace BodyBuildingApp.Models
         [ForeignKey("Trainer")]
         public string TrainerId { get; set; }
 
-        public virtual Trainer Trainer { set; get; }
 
         [Required]
         [StringLength(50)]
         [ForeignKey("Session")]
         public string SessionId { get; set; }
 
-        public virtual Session Session { set; get; }
 
     }
 }

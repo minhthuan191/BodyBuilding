@@ -30,31 +30,18 @@ namespace BodyBuildingApp.Repository
         }
         public bool CreateExercise(Exercise exercise)
         {
-            this.DBContext.Entry(exercise).State = EntityState.Modified;
-            if(GetExercisebyId(exercise.ExerciseId) != null)
-            {
                 this.DBContext.Exercise.Add(exercise);
-                this.DBContext.SaveChanges();
-                return true;
-            }
-            else
-            {
-                throw new Exception("error at repository");
-            }
+                return this.DBContext.SaveChanges() > 0;
         }
         public bool UpdateExcercise(Exercise exercise)
         {
-            this.DBContext.Entry(exercise).State = EntityState.Modified;
-            if (GetExercisebyId(exercise.ExerciseId) == null) throw new Exception("error at repository");
             this.DBContext.Update(exercise);
             this.DBContext.SaveChanges();
             return true;
         }
 
-        public bool DeleteExcercise(string id)
-        {
-            var exercise = GetExercisebyId(id);
-            if (exercise == null) throw new Exception("error at repository");
+        public bool DeleteExcercise(Exercise exercise)
+        { 
             this.DBContext.Exercise.Remove(exercise);
             this.DBContext.SaveChanges();
             return true;

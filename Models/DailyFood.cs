@@ -24,11 +24,6 @@ namespace BodyBuildingApp.Models
         
         public  Recommend Recommend { set; get; }
 
-        [Required]
-        [StringLength(50)]
-        [ForeignKey("Target")]
-        public string FoodName { set; get; }
-
-        public virtual FoodDetail FoodDetail { set; get; }
+        
     }
 }

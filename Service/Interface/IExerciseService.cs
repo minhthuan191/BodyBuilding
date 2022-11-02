@@ -12,6 +12,6 @@ namespace BodyBuildingApp.Service.Interface
 
         public bool UpdateExcercise(Exercise exercise);
 
-        public bool DeleteExcercise(string id);
+        public bool DeleteExcercise(Exercise exercise);
     }
 }

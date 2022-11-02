@@ -17,6 +17,7 @@ namespace BodyBuildingApp.Utils
         public DbSet<Customer> Customer { set; get; }
         public DbSet<BodyStatus> BodyStatus { set; get; }
         public DbSet<DailyFood> DailyFood { set; get; }
+        public DbSet<DailyFoodDetail> DailyFoodDetails { set; get; }
         public DbSet<DailyPlan> DailyPlan { set; get; }
         public DbSet<Exercise> Exercise { set; get; }
         public DbSet<FoodDetail> FoodDetail { set; get; }
@@ -32,8 +33,8 @@ namespace BodyBuildingApp.Utils
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            //optionsBuilder.UseSqlServer("Data Source=localhost,1433;Initial Catalog=BodyBuilderApp;User ID=sa;Password=1234567890;MultipleActiveResultSets=true;Integrated Security=false;TrustServerCertificate=true");
-            optionsBuilder.UseSqlServer("Data Source=34.88.79.255;Initial Catalog=BodyBuilderApp;User ID=sqlserver;Password=8P$,%{fkMtDA-]t3;MultipleActiveResultSets=true;Integrated Security=false;TrustServerCertificate=true");
+            optionsBuilder.UseSqlServer("Data Source=localhost,1433;Initial Catalog=BodyBuilderApp;User ID=sa;Password=1234567890;MultipleActiveResultSets=true;Integrated Security=false;TrustServerCertificate=true");
+            //optionsBuilder.UseSqlServer("Data Source=34.88.79.255;Initial Catalog=BodyBuilderApp;User ID=sqlserver;Password=8P$,%{fkMtDA-]t3;MultipleActiveResultSets=true;Integrated Security=false;TrustServerCertificate=true");
         }
 
         public static async Task<Boolean> InitDatabase(IConfig config)

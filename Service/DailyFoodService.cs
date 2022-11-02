@@ -16,97 +16,32 @@ namespace BodyBuildingApp.Service
 
         public bool CreateDailyFood(DailyFood dailyFood)
         {
-            if (dailyFood == null)
-                return false;
-            else
-            {
-                return dfrepo.CreateDailyFood(dailyFood);
-            }
+            
+            return dfrepo.CreateDailyFood(dailyFood);
+            
         }
 
-        public bool DeleteDailyFood(string foodid)
-        {
-            try
-            {
-                if (foodid == null)
-                    return false;
-                else
-                {
-                    return dfrepo.DeleteDailyFood(foodid);
-                }
-            }
-            catch(Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+        public bool DeleteDailyFood(DailyFood dailyFood)
+        { 
+            return dfrepo.DeleteDailyFood(dailyFood);
+           
         }
 
-        public DailyFood GetDailyFoodByFoodName(string foodname)
-        {
-            try
-            {
-                if (foodname == null || dfrepo.GetDailyFoodByFoodName(foodname) == null)
-                    return null;
-                else
-                {
-                    return dfrepo.GetDailyFoodByFoodName(foodname);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
 
         public DailyFood GetDailyFoodbyID(string foodId)
         {
-            try
-            {
-                if (foodId == null || dfrepo.GetDailyFoodbyID(foodId) == null)
-                    return null;
-                else
-                {
-                    return dfrepo.GetDailyFoodbyID(foodId);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            return dfrepo.GetDailyFoodbyID(foodId);
+            
         }
 
         public DailyFood GetFoodByTime(string timetoeat)
-        {
-            try
-            {
-                if (timetoeat == null || dfrepo.GetFoodByTime(timetoeat) == null)
-                    return null;
-                else
-                {
-                    return dfrepo.GetFoodByTime(timetoeat);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+        {   
+            return dfrepo.GetFoodByTime(timetoeat);
         }
 
         public bool UpdateDailyFood(DailyFood dailyFood)
         {
-            try
-            {
-                if (dailyFood == null || dfrepo.GetDailyFoodbyID(dailyFood.DailyFoodId) == null)
-                    return false;
-                else
-                {
-                    return dfrepo.UpdateDailyFood(dailyFood);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            return dfrepo.UpdateDailyFood(dailyFood);
         }
     }
 }

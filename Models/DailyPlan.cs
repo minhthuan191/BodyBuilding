@@ -20,14 +20,12 @@ namespace BodyBuildingApp.Models
         [ForeignKey("Customer")]
         public string UserId { set; get; }
 
-        public virtual Customer Customer { set; get; }
 
         [Required]
         [StringLength(50)]
-        [ForeignKey("DailyFood")]
-        public string DailyFoodId { set; get; }
+        [ForeignKey("DailyFoodDetail")]
+        public string DailyFoodDetailId { set; get; }
 
-        public virtual DailyFood DailyFood { set; get; }
         [Required]
         [StringLength(50)]
         [ForeignKey("Session")]

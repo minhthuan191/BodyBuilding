@@ -32,14 +32,11 @@ namespace BodyBuildingApp.Models
         [ForeignKey("Customer")]
         public string UserId { get; set; }
 
-        public virtual Customer Customer { set; get; }
 
         [Required]
         [StringLength(50)]
         [ForeignKey("Trainer")]
         public string TrainerId { get; set; }
-
-        public virtual Trainer Trainer { set; get; }
 
     }
 }

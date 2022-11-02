@@ -38,10 +38,12 @@ namespace BodyBuildingApp
             services.AddScoped<IConfig, Config>();
             services.AddScoped<IJwtService, JwtService>();
             services.AddScoped<IAuthService, AuthService>();
-
             services.AddScoped<ICustomerService, CustomerService>();
-            services.AddScoped<CustomerRepository>();
             services.AddScoped<IBodyStatusService, BodyStatusService>();
+            services.AddScoped<IExerciseService, ExerciseService>();
+
+            services.AddScoped<ExerciseRepository>();
+            services.AddScoped<CustomerRepository>();
             services.AddScoped<BodyStatusRepository>();
             services.AddScoped<AuthGuard>();
             services.AddScoped<AuthGuardGuest>();

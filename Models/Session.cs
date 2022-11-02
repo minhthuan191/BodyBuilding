@@ -26,7 +26,7 @@ namespace BodyBuildingApp.Models
         [ForeignKey("Exercise")]
         public string ExerciseId { get; set; }
 
-        public virtual Exercise Exercise { set; get; }
+
 
     }
 }

@@ -43,13 +43,11 @@ namespace BodyBuildingApp.Models
         [ForeignKey("Target")]
         public string TargetId { get; set; }
 
-        public virtual Target Target { set; get; }
 
 
         [StringLength(50)]
         [ForeignKey("BodyStatus")]
         public string BodyStatusId { get; set; }
 
-        public virtual BodyStatus BodyStatus { set; get; }
     }
 }

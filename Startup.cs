@@ -41,7 +41,7 @@ namespace BodyBuildingApp
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<IBodyStatusService, BodyStatusService>();
             services.AddScoped<IExerciseService, ExerciseService>();
-
+            //dasd
             services.AddScoped<ExerciseRepository>();
             services.AddScoped<CustomerRepository>();
             services.AddScoped<BodyStatusRepository>();

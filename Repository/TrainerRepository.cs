@@ -21,33 +21,27 @@ namespace BodyBuildingApp.Repository
             if(trainer == null) return null;
             return trainer;
         }
+        public Trainer GetTrainerByPhone(string phone)
+        {
+            Trainer trainer = this.DBContext.Trainer.FirstOrDefault(item => item.Phone == phone );
+            if(trainer == null) return null;
+            return trainer;
+        }
 
         public bool CreateTrainer(Trainer trainer)
-        {
-            this.DBContext.Entry(trainer).State = EntityState.Modified;
-            if(GetTrainerById(trainer.TrainerId) != null)
-            {
+        { 
                 this.DBContext.Trainer.Add(trainer);
                 this.DBContext.SaveChanges();
                 return true;
-            }
-            else
-            {
-                throw new Exception("error at repository");
-            }
         }
         public bool UpdateTrainer(Trainer trainer)
         {
-            this.DBContext.Entry(trainer).State = EntityState.Modified;
-            if (GetTrainerById(trainer.TrainerId) == null) throw new Exception("error at repository");
             this.DBContext.Update(trainer);
             this.DBContext.SaveChanges();
             return true;
         } 
-        public bool DeleteTrainer(string trainerId)
+        public bool DeleteTrainer(Trainer trainer)
         {
-            var trainer = GetTrainerById(trainerId);
-            if (trainer == null) throw new Exception("error at repository");
             this.DBContext.Trainer.Remove(trainer);
             this.DBContext.SaveChanges();
             return true;

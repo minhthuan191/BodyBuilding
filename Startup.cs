@@ -41,8 +41,11 @@ namespace BodyBuildingApp
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<IBodyStatusService, BodyStatusService>();
             services.AddScoped<IExerciseService, ExerciseService>();
+            services.AddScoped<IExerciseSessionService, ExerciseSessionService>();
+            services.AddScoped<IInstructionDetailService, InstructionDetailService>();
 
             services.AddScoped<ExerciseRepository>();
+            services.AddScoped<InstructionDetailRepository>();
             services.AddScoped<CustomerRepository>();
             services.AddScoped<BodyStatusRepository>();
             services.AddScoped<AuthGuard>();
@@ -77,7 +80,7 @@ namespace BodyBuildingApp
             //}
 
             app.UseHttpsRedirection();
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseAuthorization();

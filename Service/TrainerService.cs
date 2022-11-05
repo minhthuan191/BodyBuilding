@@ -17,71 +17,29 @@ namespace BodyBuildingApp.Service
 
         public bool CreateTrainer(Trainer trainer)
         {
-            if (trainer == null)
-            {
-                return false;
-            }
-            else
-            {
-                return tnrepo.CreateTrainer(trainer);
-            }
+            return tnrepo.CreateTrainer(trainer);
+            
         }
 
-        public bool DeleteTrainer(string trainerId)
+        public bool DeleteTrainer(Trainer trainer)
         {
-            try
-            {
-                if (trainerId == null)
-                {
-                   return false;
-                }
-                else
-                {
-                    return tnrepo.DeleteTrainer(trainerId);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            return tnrepo.DeleteTrainer(trainer);
         }
 
         public Trainer GetTrainerById(string trainerId)
         {
-            try
-            {
-                if (trainerId == null || tnrepo.GetTrainerById(trainerId) == null)
-                {
-                    return null;
-                }
-                else
-                {
-                    return tnrepo.GetTrainerById(trainerId);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            return tnrepo.GetTrainerById(trainerId);
         }
 
         public bool UpdateTrainer(Trainer trainer)
         {
-            try
-            {
-                if (trainer == null)
-                {
-                    return false;
-                }
-                else
-                {
-                    return tnrepo.UpdateTrainer(trainer);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            return tnrepo.UpdateTrainer(trainer);
+       
+        }
+
+        public Trainer GetTrainerByPhone(string phone)
+        {
+            return tnrepo.GetTrainerByPhone(phone);
         }
     }
 }

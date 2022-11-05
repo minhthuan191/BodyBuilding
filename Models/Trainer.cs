@@ -21,6 +21,14 @@ namespace BodyBuildingApp.Models
         public string Phone { set; get; }
 
         [Required]
+        [StringLength(50)]
+        public string Password { set; get; }
+
+        [Required]
+        [StringLength(50)]
+        public string Role { set; get; }
+
+        [Required]
         public Status Status { set; get; }
 
     }

@@ -23,7 +23,7 @@ namespace BodyBuildingApp.Utils
         public DbSet<FoodDetail> FoodDetail { set; get; }
         public DbSet<Instruction> Instruction { set; get; }
         public DbSet<Schedule> Schedule { set; get; }
-        public DbSet<Session> Session { set; get; }
+        public DbSet<InstructionDetail> InstructionDetail { set; get; }
         public DbSet<Target> Target { set; get; }
         public DbSet<Trainer> Trainer { set; get; }
 

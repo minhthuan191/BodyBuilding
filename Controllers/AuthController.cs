@@ -15,11 +15,13 @@ namespace BodyBuildingApp.Controllers
     {
         private readonly IAuthService AuthService;
         private readonly ICustomerService CustomerService;
+        private readonly ITrainerService TrainerService;
 
-        public AuthApiController(IAuthService authService, ICustomerService customerService)
+        public AuthApiController(IAuthService authService, ICustomerService customerService, ITrainerService trainerService)
         {
             this.AuthService = authService;
             this.CustomerService = customerService;
+            this.TrainerService = trainerService;
         }
 
         [HttpPost("login")]
@@ -68,6 +70,51 @@ namespace BodyBuildingApp.Controllers
             return new ObjectResult(res.getResponse());
         }
 
+        [HttpPost("login/trainer")]
+        public IActionResult HandleLoginForTrainer([FromBody] LoginTrainerDTO body)
+        {
+            var res = new ServerApiResponse<string>();
+            ValidationResult result = new LoginTrainerDTOValidator().Validate(body);
+            if (!result.IsValid)
+            {
+                res.mapDetails(result);
+                return new BadRequestObjectResult(res.getResponse());
+            }
+
+            var trainer = this.TrainerService.GetTrainerByPhone(body.Phone);
+            if (trainer == null)
+            {
+                res.setErrorMessage("Phone or password is wrong");
+                return new BadRequestObjectResult(res.getResponse());
+            }
+
+            if (!this.AuthService.ComparePassword(body.Password, trainer.Password))
+            {
+                res.setErrorMessage("Phone or password is wrong");
+                return new BadRequestObjectResult(res.getResponse());
+            }
+
+            var token = this.AuthService.LoginHandler(trainer.TrainerId);
+
+            if (token == null)
+            {
+                res.setErrorMessage("Phone or password is wrong");
+                return new BadRequestObjectResult(res.getResponse());
+            }
+
+            this.HttpContext.Response.Cookies.Append("auth-token", token, new CookieOptions()
+            {
+                Expires = DateTime.Now.AddDays(30),
+                SameSite = SameSiteMode.None,
+                Secure = true
+
+            });
+            Console.WriteLine("--------------");
+            res.data = token;
+            res.setMessage("login success");
+
+            return new ObjectResult(res.getResponse());
+        }
 
         [HttpPost("register")]
         public IActionResult HandleRegister([FromBody] RegisterDTO body)

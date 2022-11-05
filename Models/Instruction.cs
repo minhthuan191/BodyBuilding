@@ -17,14 +17,30 @@ namespace BodyBuildingApp.Models
 
         [Required]
         [StringLength(50)]
+        public string TotalTime { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string TotalCalo { get; set; }
+
+        [Required]
+        public Recommend Recommend { get; set; }
+
+        [Required]
+        [StringLength(50)]
         [ForeignKey("Trainer")]
         public string TrainerId { get; set; }
 
 
         [Required]
         [StringLength(50)]
-        [ForeignKey("Session")]
-        public string SessionId { get; set; }
+        [ForeignKey("InstructionDetail")]
+        public string InstructionDetailId { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        [ForeignKey("Customer")]
+        public string CustomerId { get; set; }
 
 
     }

@@ -28,8 +28,8 @@ namespace BodyBuildingApp.Models
 
         [Required]
         [StringLength(50)]
-        [ForeignKey("Session")]
-        public string SessionId { set; get; }
+        [ForeignKey("Instruction")]
+        public string InstructionId { set; get; }
 
     }
 }

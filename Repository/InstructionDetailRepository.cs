@@ -23,5 +23,12 @@ namespace BodyBuildingApp.Repository
             return this.DBContext.InstructionDetail.Where<InstructionDetail>(u => u.ExerciseId == id).ToList<InstructionDetail>();
         }
 
+        public bool CreateInstructionDetail(InstructionDetail instructionDetail)
+        {
+            this.DBContext.InstructionDetail.Add(instructionDetail);
+            this.DBContext.SaveChanges();
+            return true;
+        }
+
     }
 }

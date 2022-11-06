@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 
 namespace BodyBuildingApp.Repository
 {
@@ -23,48 +24,57 @@ namespace BodyBuildingApp.Repository
             return instruction;
         }
 
-        public Instruction GetInstructionByInsIDandTrainerID(string insId, string trainerId)
-        {
-            Instruction instruction = this.DBContext.Instruction.FirstOrDefault(item => item.InstructionId == insId);
-            return instruction;
-        }
 
-        public Instruction GetInstructionbyTrainer(string trainerid)
+        public List<Instruction> GetInstructionbyTrainer(string trainerid)
         {
-            Instruction instruction = this.DBContext.Instruction.FirstOrDefault(item => item.TrainerId == trainerid);
+            List<Instruction> instruction = this.DBContext.Instruction.Where(item => item.TrainerId == trainerid).ToList();
             if (instruction == null) return null;
             return instruction;
         }
         public bool CreateInstruction(Instruction instruction)
         {
-            this.DBContext.Entry(instruction).State = EntityState.Modified;
-            if(GetInstructionbyID(instruction.InstructionId) != null)
-            {
                 this.DBContext.Instruction.Add(instruction);
                 this.DBContext.SaveChanges();
                 return true;
-            }
-            else
-            {
-                throw new Exception("error at repository");
-            }
         }
         public bool UpdateInstruction(Instruction instruction)
         {
-            this.DBContext.Entry(instruction).State = EntityState.Modified;
-            if (GetInstructionbyID(instruction.InstructionId) == null) throw new Exception("error at repository");
+           
             this.DBContext.Update(instruction);
             this.DBContext.SaveChanges();
             return true;
         }
 
-        public bool DeleteInstruction(string insId)
+        public bool DeleteInstruction(Instruction instruction)
         {
-            var instruction = GetInstructionbyID(insId);
-            if (instruction == null) throw new Exception("error at repository");
             this.DBContext.Instruction.Remove(instruction);
             this.DBContext.SaveChanges();
             return true;
+        }
+
+        public (List<Instruction>, int) GetInstructions(string userId, int pageIndex, int pageSize)
+        {
+            List<Instruction> instructions = this.DBContext.Instruction.Where(o => o.CustomerId == userId).ToList();
+            var result = instructions.Take((pageIndex + 1) * pageSize).Skip(pageIndex * pageSize).ToList();
+            return (result, instructions.Count);
+        }
+
+        public (List<InstructionDetail>, int) GetOrderDetail(string instructionId, int pageIndex, int pageSize)
+        {
+            List<InstructionDetail> instructionDetail = this.DBContext.InstructionDetail.Where(x => x.InstructionId == instructionId).ToList();
+            foreach (var exercise in instructionDetail)
+            {
+                this.DBContext.Exercise.Where(item => item.ExerciseId == exercise.ExerciseId).Load();
+            }
+            var pagelist = (List<InstructionDetail>)instructionDetail.Take((pageIndex + 1) * pageSize).Skip(pageIndex * pageSize).ToList();
+            return (pagelist, instructionDetail.Count);
+        }
+
+        public (List<InstructionDetail>, int) GetAllOrders(int pageIndex, int pageSize)
+        {
+            List<InstructionDetail> orders = this.DBContext.InstructionDetail.ToList();
+            var result = orders.Take((pageIndex + 1) * pageSize).Skip(pageIndex * pageSize).ToList();
+            return (result, orders.Count);
         }
     }
 }

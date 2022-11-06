@@ -43,13 +43,17 @@ namespace BodyBuildingApp
             services.AddScoped<IExerciseService, ExerciseService>();
             services.AddScoped<IExerciseSessionService, ExerciseSessionService>();
             services.AddScoped<IInstructionDetailService, InstructionDetailService>();
+            services.AddScoped<IInstructionService, InstructionService>();
+            services.AddScoped<ITrainerService, TrainerService>();
 
+            services.AddScoped<InstructionRepository>();
+            services.AddScoped<TrainerRepository>();
             services.AddScoped<ExerciseRepository>();
             services.AddScoped<InstructionDetailRepository>();
             services.AddScoped<CustomerRepository>();
             services.AddScoped<BodyStatusRepository>();
             services.AddScoped<AuthGuard>();
-            services.AddScoped<AuthGuardGuest>();
+            services.AddScoped<AuthGuardTrainner>();
             services.AddScoped<UserFilter>();
 
             services.AddSession();

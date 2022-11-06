@@ -10,15 +10,15 @@ using System.Collections.Generic;
 
 namespace BodyBuildingApp.Auth
 {
-    public class AuthGuardGuest :IActionFilter
+    public class AuthGuardTrainner :IActionFilter
     {
         private readonly IJwtService JWTService;
-        private readonly ICustomerService CustomerService;
-        public AuthGuardGuest(IJwtService jwtService, ICustomerService customerService)
+        private readonly ITrainerService TrainerService;
+        public AuthGuardTrainner(IJwtService jwtService, ITrainerService trainerService)
         {
 
             this.JWTService = jwtService;
-            this.CustomerService = customerService;
+            this.TrainerService = trainerService;
         }
 
         public void OnActionExecuted(ActionExecutedContext context)
@@ -42,16 +42,35 @@ namespace BodyBuildingApp.Auth
                     cookies.Add(cookieArray[0], cookieArray[1]);
                 }
 
-                if (cookies.TryGetValue("auth-token", out _))
+                if (!cookies.TryGetValue("auth-token", out _))
                 {
-                    var token = this.JWTService.VerifyToken(cookies["auth-token"]).Split(";");
-                    if (token != null)
+                    return false;
+                }
+                var token = this.JWTService.VerifyToken(cookies["auth-token"]).Split(";");
+
+                if (token[0] == null)
+                {
+                    return false;
+                }
+                var trainer = this.TrainerService.GetTrainerById(token[0]);
+                if (trainer == null)
+                {
+                    return false;
+                }
+
+                Controller controller = context.Controller as Controller;
+                controller.ViewData["trainer"] = trainer;
+
+                // check user's role
+                if (context.ActionArguments.TryGetValue("roles", out _))
+                {
+                    string roles = context.ActionArguments["roles"] as String;
+                    if (!roles.Contains(trainer.Role))
                     {
-                        var user = this.CustomerService.GetCustomerById(token[0]);
-                        Controller controller = context.Controller as Controller;
-                        controller.ViewData["user"] = user;
+                        return false;
                     }
                 }
+                //
 
                 return true;
 
@@ -59,7 +78,7 @@ namespace BodyBuildingApp.Auth
             catch (Exception error)
             {
                 Console.WriteLine(error);
-                return true;
+                return false;
             }
         }
 

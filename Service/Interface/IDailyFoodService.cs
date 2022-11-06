@@ -12,7 +12,7 @@ namespace BodyBuildingApp.Service.Interface
 
         public bool UpdateDailyFood(DailyFood dailyFood);
 
-        public bool DeleteDailyFood(DailyFood dailyFood);
+        public bool DeleteDailyFood(string dailyFood);
 
     }
 }

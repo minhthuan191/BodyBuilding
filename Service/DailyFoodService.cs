@@ -16,26 +16,26 @@ namespace BodyBuildingApp.Service
 
         public bool CreateDailyFood(DailyFood dailyFood)
         {
-            
+
             return dfrepo.CreateDailyFood(dailyFood);
-            
+
         }
 
-        public bool DeleteDailyFood(DailyFood dailyFood)
-        { 
+        public bool DeleteDailyFood(string dailyFood)
+        {
             return dfrepo.DeleteDailyFood(dailyFood);
-           
+
         }
 
 
         public DailyFood GetDailyFoodbyID(string foodId)
         {
             return dfrepo.GetDailyFoodbyID(foodId);
-            
+
         }
 
         public DailyFood GetFoodByTime(string timetoeat)
-        {   
+        {
             return dfrepo.GetFoodByTime(timetoeat);
         }
 

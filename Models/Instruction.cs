@@ -16,12 +16,10 @@ namespace BodyBuildingApp.Models
         public string Comment { set; get; }
 
         [Required]
-        [StringLength(50)]
-        public string TotalTime { get; set; }
+        public float TotalTime { get; set; }
 
         [Required]
-        [StringLength(50)]
-        public string TotalCalo { get; set; }
+        public float TotalCalo { get; set; }
 
         [Required]
         public Recommend Recommend { get; set; }

@@ -109,7 +109,6 @@ namespace BodyBuildingApp.Controllers
                 Secure = true
 
             });
-            Console.WriteLine("--------------");
             res.data = token;
             res.setMessage("login success");
 
@@ -149,6 +148,21 @@ namespace BodyBuildingApp.Controllers
             this.AuthService.RegisterHandler(customer);
 
             res.setMessage("register success");
+            return new ObjectResult(res.getResponse());
+        }
+        [HttpGet("logout")]
+        public IActionResult Logout()
+        {
+            var res = new ServerApiResponse<string>();
+            this.HttpContext.Response.Cookies.Append("auth-token", "", new CookieOptions()
+            {
+                Expires = DateTime.Now.AddDays(-1),
+                SameSite = SameSiteMode.None,
+                Secure = true
+
+            });
+            this.HttpContext.Session.Clear();
+            res.setMessage("Logout success");
             return new ObjectResult(res.getResponse());
         }
     }

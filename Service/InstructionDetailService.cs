@@ -12,6 +12,12 @@ namespace BodyBuildingApp.Service
         {
             this.InstructionDetailRepository = instructionDetailRepository;
         }
+
+        public bool CreateInstructionDetail(InstructionDetail instructionDetail)
+        {
+            return InstructionDetailRepository.CreateInstructionDetail(instructionDetail);
+        }
+
         public List<InstructionDetail> GetAllInstructionDetailByExerciseId(string id)
         {
             return InstructionDetailRepository.GetAllInstructionDetailByExerciseId(id);

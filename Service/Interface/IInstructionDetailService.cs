@@ -8,5 +8,8 @@ namespace BodyBuildingApp.Service.Interface
         public List<InstructionDetail> GetAllInstructionDetailByInstructionId(string id);
         public List<InstructionDetail> GetAllInstructionDetailByExerciseId(string id);
 
+        public bool CreateInstructionDetail(InstructionDetail instructionDetail);
+
+
     }
 }

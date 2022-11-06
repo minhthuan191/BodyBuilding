@@ -1,4 +1,5 @@
 ﻿using BodyBuildingApp.Models;
+using System.Collections.Generic;
 
 namespace BodyBuildingApp.Service.Interface
 {
@@ -6,9 +7,7 @@ namespace BodyBuildingApp.Service.Interface
     {
         public Instruction GetInstructionbyID(string id);
 
-        public Instruction GetInstructionbyTrainer(string trainerid);
-
-        public Instruction GetInstructionByInsIDandTrainerID(string insId, string trainerId);
+        public List<Instruction> GetInstructionbyTrainer(string trainerid);
 
         public bool CreateInstruction(Instruction instruction);
 

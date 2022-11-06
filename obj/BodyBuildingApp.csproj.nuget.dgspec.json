@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\MinhThuan\\SWD\\BodyBuildingApp\\3\\BodyBuilding\\BodyBuildingApp.csproj": {}
+    "D:\\MinhThuan\\SWD\\BodyBuildingApp\\2\\BodyBuilding\\BodyBuildingApp.csproj": {}
   },
   "projects": {
-    "D:\\MinhThuan\\SWD\\BodyBuildingApp\\3\\BodyBuilding\\BodyBuildingApp.csproj": {
+    "D:\\MinhThuan\\SWD\\BodyBuildingApp\\2\\BodyBuilding\\BodyBuildingApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\MinhThuan\\SWD\\BodyBuildingApp\\3\\BodyBuilding\\BodyBuildingApp.csproj",
+        "projectUniqueName": "D:\\MinhThuan\\SWD\\BodyBuildingApp\\2\\BodyBuilding\\BodyBuildingApp.csproj",
         "projectName": "BodyBuildingApp",
-        "projectPath": "D:\\MinhThuan\\SWD\\BodyBuildingApp\\3\\BodyBuilding\\BodyBuildingApp.csproj",
+        "projectPath": "D:\\MinhThuan\\SWD\\BodyBuildingApp\\2\\BodyBuilding\\BodyBuildingApp.csproj",
         "packagesPath": "C:\\Users\\LENOVO-PC\\.nuget\\packages\\",
-        "outputPath": "D:\\MinhThuan\\SWD\\BodyBuildingApp\\3\\BodyBuilding\\obj\\",
+        "outputPath": "D:\\MinhThuan\\SWD\\BodyBuildingApp\\2\\BodyBuilding\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\LENOVO-PC\\AppData\\Roaming\\NuGet\\NuGet.Config",

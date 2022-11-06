@@ -16,8 +16,10 @@ namespace BodyBuildingApp.Repository
             DBContext = dBContext;
         }
 
-        public bool DeleteDailyFood(DailyFood dailyFood)
+        public bool DeleteDailyFood(string id)
         {
+            var dailyFood = GetDailyFoodbyID(id);
+            if (dailyFood == null) return false;
             this.DBContext.DailyFood.Remove(dailyFood);
             this.DBContext.SaveChanges();
             return true;

@@ -1,4 +1,5 @@
-﻿using BodyBuildingApp.Controllers.DTO;
+﻿using BodyBuildingApp.Auth;
+using BodyBuildingApp.Controllers.DTO;
 using BodyBuildingApp.Models;
 using BodyBuildingApp.Service.Interface;
 using BodyBuildingApp.Utils.Common;
@@ -8,19 +9,33 @@ using System;
 
 namespace BodyBuildingApp.Controllers
 {
+    [ServiceFilter(typeof(AuthGuard))]
     [Route("/api/dailyfood")]
     [ApiController]
     public class DailyFoodController : Controller
     {
         private readonly IDailyFoodService dailyFoodService;
 
-        public DailyFoodController (IDailyFoodService dailyFoodService)
+        public DailyFoodController(IDailyFoodService dailyFoodService)
         {
             this.dailyFoodService = dailyFoodService;
         }
 
-        /*[HttpPut]
-        public IActionResult HandleUpdateDailyFood([FromBody] AddDailyFoodDTO body)
+        [HttpGet("{id}")]
+        public IActionResult GetDailyFoodbyID(string id)
+        {
+            if (dailyFoodService.GetDailyFoodbyID(id) == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(dailyFoodService.GetDailyFoodbyID(id));
+            }
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult HandleUpdateDailyFood([FromBody] AddDailyFoodDTO body, string id)
         {
             var res = new ServerApiResponse<string>();
 
@@ -31,22 +46,20 @@ namespace BodyBuildingApp.Controllers
                 return new BadRequestObjectResult(res.getResponse());
             };
 
-            Customer customer = (Customer)ViewData["user"];
-            var DailyFood = this.DailyFoodService.GetDailyFoodByUserId(customer.UserId);
+            var DailyFood = this.dailyFoodService.GetDailyFoodbyID(id);
 
             if (DailyFood == null)
             {
-                res.setErrorMessage("Cannot find body status of this user");
+                res.setErrorMessage("Cannot find Daily Food ");
                 return new NotFoundObjectResult(res.getResponse());
             }
 
-            DailyFood.Weight = body.Weight;
-            DailyFood.Height = body.Height;
-            DailyFood.Date = DateTime.Now.ToShortDateString();
+            DailyFood.TimetoEat = body.TimeToEat;
+            DailyFood.Recommend = body.Recommend;
 
-            this.dailyFoodService.Updatebody(DailyFood);
+            this.dailyFoodService.UpdateDailyFood(DailyFood);
 
-            res.setMessage("Update body status success");
+            res.setMessage("Update Daily Food success");
             return new ObjectResult(res.getResponse());
         }
         [HttpPost]
@@ -62,36 +75,35 @@ namespace BodyBuildingApp.Controllers
             };
 
             var DailyFood = new DailyFood();
-            
+
             DailyFood.DailyFoodId = Guid.NewGuid().ToString();
-            DailyFood.FoodName = body.FoodName;
             DailyFood.TimetoEat = body.TimeToEat;
             DailyFood.Recommend = body.Recommend;
 
             this.dailyFoodService.CreateDailyFood(DailyFood);
-            res.setMessage("Add body status success!");
+            res.setMessage("Add Daily Food success!");
             return new ObjectResult(res.getResponse());
         }
 
-        [HttpDelete]
-        public IActionResult HandleDeleteDailyFood()
+        [HttpDelete("{id}")]
+        public IActionResult HandleDeleteDailyFood(string id)
         {
             var res = new ServerApiResponse<string>();
 
-            Customer customer = (Customer)ViewData["user"];
-            var DailyFood = this.dailyFoodService.GetDailyFoodbyID(customer.UserId);
 
-            if (DailyFood == null)
+            if (dailyFoodService.DeleteDailyFood(id) == false)
             {
-                res.setErrorMessage("Cannot find dailyfood of this user");
+                res.setErrorMessage("Cannot find dailyfood");
                 return new NotFoundObjectResult(res.getResponse());
             }
+            else
+            {
+                this.dailyFoodService.DeleteDailyFood(id);
+                res.setMessage("Delete DailyFood success");
+                return new ObjectResult(res.getResponse());
+            }
 
-            this.dailyFoodService.DeleteDailyFood(DailyFood);
-
-            res.setMessage("Delete DailyFood success");
-            return new ObjectResult(res.getResponse());
         }
-       */
+
     }
 }

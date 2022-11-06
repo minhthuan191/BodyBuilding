@@ -30,7 +30,7 @@ namespace BodyBuildingApp.Repository
         public bool CreateFoodDetail(FoodDetail food)
         {
             this.DBContext.Entry(food).State = EntityState.Modified;
-            if(GetFoodbyName(food.FoodName) != null)
+            if(GetFoodbyName(food.FoodName) == null)
             {
                 this.DBContext.FoodDetail.Add(food);
                 this.DBContext.SaveChanges();
@@ -38,13 +38,13 @@ namespace BodyBuildingApp.Repository
             }
             else
             {
-                throw new Exception("error at repository");
+                return false;
             }
         }
         public bool UpdateFoodDetail(FoodDetail food)
         {
             this.DBContext.Entry(food).State = EntityState.Modified;
-            if (GetFoodbyName(food.FoodName) == null) throw new Exception("error at repository");
+            if (GetFoodbyName(food.FoodName) == null) return false; 
             this.DBContext.Update(food);
             this.DBContext.SaveChanges();
             return true;
@@ -53,7 +53,7 @@ namespace BodyBuildingApp.Repository
         public bool DeleteFoodDetail(string foodname)
         {
             var fooddetail = GetFoodbyName(foodname);
-            if (fooddetail == null) throw new Exception("error at repository");
+            if (fooddetail == null) return false;
             this.DBContext.FoodDetail.Remove(fooddetail);
             this.DBContext.SaveChanges();
             return true;

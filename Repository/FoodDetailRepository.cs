@@ -4,6 +4,7 @@ using BodyBuildingApp.Utils;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 
 namespace BodyBuildingApp.Repository
 {
@@ -13,6 +14,13 @@ namespace BodyBuildingApp.Repository
         public FoodDetailRepository(DBContext dBContext)
         {
             DBContext = dBContext;
+        }
+        
+        public List<FoodDetail> GetAllFoodDetail()
+        {
+            List<FoodDetail> list = this.DBContext.Set<FoodDetail>().ToList(FoodDetail);
+            if (list == null) return null;
+            else return list;
         }
         public FoodDetail GetFoodByCalories(string calories)
         {

@@ -2,6 +2,7 @@
 using BodyBuildingApp.Repository;
 using BodyBuildingApp.Service.Interface;
 using System;
+using System.Collections.Generic;
 using System.Xml.Linq;
 
 namespace BodyBuildingApp.Service
@@ -81,6 +82,11 @@ namespace BodyBuildingApp.Service
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        public List<FoodDetail> GetListFoodDetail()
+        { 
+           return fdrepo.GetAllFoodDetail();
         }
 
         public bool UpdateFoodDetail(FoodDetail foodDetail)

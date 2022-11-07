@@ -39,9 +39,9 @@ namespace BodyBuildingApp.Service
         {
             return ecrepo.GetExercisebyName(name);
         }
-        public (List<Exercise> ,int)GetListExercise(int pageIndex, int pageSize)
+        public List<Exercise>GetListExercise()
         {
-            return ecrepo.GetAllExercise(pageIndex, pageSize);
+            return ecrepo.GetAllExercise();
         }
 
         public bool UpdateExcercise(Exercise exercise)

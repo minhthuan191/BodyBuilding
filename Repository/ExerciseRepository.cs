@@ -36,11 +36,10 @@ namespace BodyBuildingApp.Repository
             return exercise;
         }
 
-        public (List<Exercise>, int) GetAllExercise(int pageIndex, int pageSize)
+        public List<Exercise> GetAllExercise()
         {
             List<Exercise> exercises = this.DBContext.Exercise.ToList();
-            var pagelist = (List<Exercise>)exercises.Take((pageIndex + 1) * pageSize).Skip(pageIndex * pageSize).ToList();
-            return (pagelist, exercises.Count);
+            return exercises;
         }
 
         public bool CreateExercise(Exercise exercise)

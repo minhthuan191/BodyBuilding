@@ -321,3 +321,4 @@ D:\MinhThuan\SWD\BodyBuildingApp\2\BodyBuilding\obj\Debug\net5.0\BodyBuildingApp
 D:\MinhThuan\SWD\BodyBuildingApp\2\BodyBuilding\obj\Debug\net5.0\ref\BodyBuildingApp.dll
 D:\MinhThuan\SWD\BodyBuildingApp\2\BodyBuilding\obj\Debug\net5.0\BodyBuildingApp.pdb
 D:\MinhThuan\SWD\BodyBuildingApp\2\BodyBuilding\obj\Debug\net5.0\BodyBuildingApp.genruntimeconfig.cache
+D:\MinhThuan\SWD\BodyBuildingApp\2\BodyBuilding\obj\Debug\net5.0\BodyBuildingApp.csproj.AssemblyReference.cache

@@ -2,6 +2,7 @@
 using BodyBuildingApp.Repository;
 using BodyBuildingApp.Service.Interface;
 using System;
+using System.Collections.Generic;
 
 namespace BodyBuildingApp.Service
 {
@@ -34,10 +35,16 @@ namespace BodyBuildingApp.Service
                     return ecrepo.GetExercisebyId(id);
         }
 
+        public (List<Exercise> ,int)GetListExercise(int pageIndex, int pageSize)
+        {
+            return ecrepo.GetAllExercise(pageIndex, pageSize);
+        }
+
         public bool UpdateExcercise(Exercise exercise)
         {
                     return ecrepo.UpdateExcercise(exercise);
 
         }
+
     }
 }

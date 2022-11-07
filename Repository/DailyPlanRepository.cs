@@ -17,6 +17,15 @@ namespace BodyBuildingApp.Repository
         this.DBContext = dBContext;
         }
 
+        public List<DailyPlan> GetDailyPlans()
+        {
+            List<DailyPlan> list =  this.DBContext.Set<DailyPlan>().ToList<DailyPlan>();
+            if (list == null) return null;
+            else
+            {
+                return list;
+            }
+        }
         public DailyPlan GetDailybyPlanID(string id)
         {
             DailyPlan dailyPlan = this.DBContext.DailyPlan.FirstOrDefault(item => item.PlanId == id);
@@ -40,7 +49,7 @@ namespace BodyBuildingApp.Repository
         public bool CreateDailyPlan(DailyPlan dailyPlan)
         {
             this.DBContext.Entry(dailyPlan).State = EntityState.Modified;
-            if(GetDailybyPlanID(dailyPlan.PlanId) != null)
+            if(GetDailybyPlanID(dailyPlan.PlanId) == null)
             {
                 this.DBContext.DailyPlan.Add(dailyPlan);
                 this.DBContext.SaveChanges();
@@ -64,10 +73,16 @@ namespace BodyBuildingApp.Repository
         public bool DeleteDailyPlan(string id)
         {
             var dailyplan = GetDailybyPlanID(id);
-            if (dailyplan == null) throw new Exception("error at repository");
-            this.DBContext.DailyPlan.Remove(dailyplan);
-            this.DBContext.SaveChanges();
-            return true;
+            if (dailyplan == null)
+            {
+                return false;
+            }
+            else
+            {
+                this.DBContext.DailyPlan.Remove(dailyplan);
+                this.DBContext.SaveChanges();
+                return true;
+            }
         }
     }
 }

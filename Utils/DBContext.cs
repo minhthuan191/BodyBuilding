@@ -16,7 +16,6 @@ namespace BodyBuildingApp.Utils
 
         public DbSet<Customer> Customer { set; get; }
         public DbSet<BodyStatus> BodyStatus { set; get; }
-        public DbSet<DailyFood> DailyFood { set; get; }
         public DbSet<DailyFoodDetail> DailyFoodDetails { set; get; }
         public DbSet<DailyPlan> DailyPlan { set; get; }
         public DbSet<Exercise> Exercise { set; get; }
@@ -24,6 +23,7 @@ namespace BodyBuildingApp.Utils
         public DbSet<Instruction> Instruction { set; get; }
         public DbSet<Schedule> Schedule { set; get; }
         public DbSet<InstructionDetail> InstructionDetail { set; get; }
+        public DbSet<SessionExercise> SessionExercise { set; get; }
         public DbSet<Target> Target { set; get; }
         public DbSet<Trainer> Trainer { set; get; }
 

@@ -36,6 +36,7 @@ namespace BodyBuildingApp
             services.AddControllersWithViews();
             services.AddScoped<DBContext, DBContext>();
             services.AddScoped<IConfig, Config>();
+            //service start
             services.AddScoped<IJwtService, JwtService>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ICustomerService, CustomerService>();
@@ -45,13 +46,20 @@ namespace BodyBuildingApp
             services.AddScoped<IInstructionDetailService, InstructionDetailService>();
             services.AddScoped<IInstructionService, InstructionService>();
             services.AddScoped<ITrainerService, TrainerService>();
+            services.AddScoped<IDailyPlanService, DailyPlanService>();
+            services.AddScoped<IFoodDetailService, FoodDetailService>();
+            //service end
 
+            //repo start
             services.AddScoped<InstructionRepository>();
             services.AddScoped<TrainerRepository>();
             services.AddScoped<ExerciseRepository>();
             services.AddScoped<InstructionDetailRepository>();
             services.AddScoped<CustomerRepository>();
             services.AddScoped<BodyStatusRepository>();
+            services.AddScoped<DailyPlanRepository>();
+            services.AddScoped<FoodDetailRepository>();
+            //repo end
             services.AddScoped<AuthGuard>();
             services.AddScoped<AuthGuardTrainner>();
             services.AddScoped<UserFilter>();

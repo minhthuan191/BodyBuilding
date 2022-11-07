@@ -4,6 +4,7 @@ using BodyBuildingApp.Utils;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 
 namespace BodyBuildingApp.Repository
 {
@@ -28,6 +29,14 @@ namespace BodyBuildingApp.Repository
             if (exercise == null) return null;
             return exercise;
         }
+
+        public (List<Exercise>, int) GetAllExercise(int pageIndex, int pageSize)
+        {
+            List<Exercise> exercises = this.DBContext.Exercise.ToList();
+            var pagelist = (List<Exercise>)exercises.Take((pageIndex + 1) * pageSize).Skip(pageIndex * pageSize).ToList();
+            return (pagelist, exercises.Count);
+        }
+
         public bool CreateExercise(Exercise exercise)
         {
                 this.DBContext.Exercise.Add(exercise);

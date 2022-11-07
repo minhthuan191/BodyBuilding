@@ -21,15 +21,15 @@ namespace BodyBuildingApp.Models
         public string UserId { set; get; }
 
 
-        [Required]
         [StringLength(50)]
         [ForeignKey("DailyFoodDetail")]
         public string DailyFoodDetailId { set; get; }
 
-        [Required]
         [StringLength(50)]
         [ForeignKey("Instruction")]
         public string InstructionId { set; get; }
+
+        public string Done { set; get; }
 
     }
 }

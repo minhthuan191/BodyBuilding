@@ -20,5 +20,11 @@ namespace BodyBuildingApp.Models
         [StringLength(50)]
         [ForeignKey("FoodDetail")]
         public string FoodName { set; get; }
+        [Required]
+        [StringLength(50)]
+        public string TimetoEat { set; get; }
+
+
+        public Recommend Recommend { set; get; }
     }
 }

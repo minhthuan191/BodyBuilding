@@ -35,6 +35,10 @@ namespace BodyBuildingApp.Service
                     return ecrepo.GetExercisebyId(id);
         }
 
+        public Exercise GetExercisebyName(string name)
+        {
+            return ecrepo.GetExercisebyName(name);
+        }
         public (List<Exercise> ,int)GetListExercise(int pageIndex, int pageSize)
         {
             return ecrepo.GetAllExercise(pageIndex, pageSize);

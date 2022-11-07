@@ -29,6 +29,12 @@ namespace BodyBuildingApp.Repository
             if (exercise == null) return null;
             return exercise;
         }
+        public Exercise GetExercisebyName(string name)
+        {
+            Exercise exercise = this.DBContext.Exercise.FirstOrDefault(item => item.ExerciseName == name);
+            if (exercise == null) return null;
+            return exercise;
+        }
 
         public (List<Exercise>, int) GetAllExercise(int pageIndex, int pageSize)
         {

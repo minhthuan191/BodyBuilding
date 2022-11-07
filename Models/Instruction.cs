@@ -3,6 +3,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BodyBuildingApp.Models
 {
+    public enum Recommend
+    {
+        RECOMMEND = 0,
+        NOTRECOMEND = 0,
+    }
     [Table("Instruction")]
     public class Instruction
     {

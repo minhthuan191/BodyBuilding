@@ -18,7 +18,7 @@ namespace BodyBuildingApp.Repository
         
         public List<FoodDetail> GetAllFoodDetail()
         {
-            List<FoodDetail> list = this.DBContext.Set<FoodDetail>().ToList(FoodDetail);
+            List<FoodDetail> list = this.DBContext.Set<FoodDetail>().ToList<FoodDetail>();
             if (list == null) return null;
             else return list;
         }

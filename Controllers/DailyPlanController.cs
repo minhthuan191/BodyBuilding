@@ -10,7 +10,7 @@ using System;
 namespace BodyBuildingApp.Controllers
 {
     [ServiceFilter(typeof(AuthGuard))]
-    [Route("/api/DailyPlan")]
+    [Route("/api/dailyPlan")]
     [ApiController]
     public class DailyPlanController : Controller
     {
@@ -23,7 +23,7 @@ namespace BodyBuildingApp.Controllers
         [HttpGet]
         public IActionResult GetAllDailyPlan()
         {
-            if (dailyPlanService.GetDailyPlanList == null)
+            if (dailyPlanService.GetDailyPlanList() == null)
             {
                 return NotFound();
             }

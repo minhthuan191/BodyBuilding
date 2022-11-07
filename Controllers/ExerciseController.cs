@@ -6,6 +6,7 @@ using BodyBuildingApp.Utils.Common;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 
 namespace BodyBuildingApp.Controllers
 {
@@ -17,6 +18,30 @@ namespace BodyBuildingApp.Controllers
         public ExerciseController(IExerciseService exerciseService)
         {
             this.exerciseService = exerciseService;
+        }
+        [HttpGet("{id}")]
+        public Exercise GetExercisebyId(string id)
+        {
+            if (exerciseService.GetExercisebyId(id) == null)
+            {
+                throw new Exception(" Id not found or not exist");
+            }
+            else
+            {
+                return exerciseService.GetExercisebyId(id);
+            }
+        }
+        [HttpGet("list")]
+        public (List<Exercise>,int) GetListExercise(int pageIndex, int pageSize)
+        {
+            if (exerciseService.GetListExercise(pageIndex, pageSize) == (null, 0))
+            {
+                throw new Exception("Fail to get list");
+            }
+            else
+            {
+                return exerciseService.GetListExercise(pageIndex,pageSize);
+            }
         }
 
         [HttpPut]

@@ -2,6 +2,7 @@
 using BodyBuildingApp.Repository;
 using BodyBuildingApp.Service.Interface;
 using System;
+using System.Collections.Generic;
 
 namespace BodyBuildingApp.Service
 {
@@ -89,6 +90,11 @@ namespace BodyBuildingApp.Service
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        public List<DailyPlan> GetDailyPlanList()
+        {
+            return dlrepo.GetDailyPlans();
         }
 
         public bool UpdateDailyPlan(DailyPlan dailyPlan)

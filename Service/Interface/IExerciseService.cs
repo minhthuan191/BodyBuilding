@@ -1,10 +1,12 @@
 ﻿using BodyBuildingApp.Models;
+using System.Collections.Generic;
 
 namespace BodyBuildingApp.Service.Interface
 {
     public interface IExerciseService
     {
         public Exercise GetExercisebyId(string id);
+        public (List<Exercise>,int) GetListExercise(int pageIndex, int pageSize);
 
         public Exercise GetExercisebyBodyPart(string bodyPart);
 

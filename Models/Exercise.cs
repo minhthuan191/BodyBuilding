@@ -12,6 +12,10 @@ namespace BodyBuildingApp.Models
         public string ExerciseId { set; get; }
 
         [Required]
+        [StringLength(100)]
+        public string ExerciseName { set; get; }
+
+        [Required]
         public int Set{ set; get; }
 
         [Required]

@@ -11,7 +11,7 @@ using System;
 namespace BodyBuildingApp.Controllers
 {
     [ServiceFilter(typeof(AuthGuard))]
-    [Route("/api/Schedule")]
+    [Route("/api/schedule")]
     [ApiController]
     public class ScheduleController : Controller
     {

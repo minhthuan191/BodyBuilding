@@ -10,7 +10,7 @@ using System;
 
 namespace BodyBuildingApp.Controllers
 {
-    [Route("/api/Instruction")]
+    [Route("/api/instruction")]
     [ApiController]
     public class InstructionController : Controller
     {

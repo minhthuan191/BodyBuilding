@@ -10,7 +10,7 @@ using System;
 namespace BodyBuildingApp.Controllers
 {
     [ServiceFilter(typeof(AuthGuard))]
-    [Route("/api/FoodDetail")]
+    [Route("/api/foodDetail")]
     [ApiController]
     public class FoodDetailController : Controller
     {

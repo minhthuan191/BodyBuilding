@@ -2,7 +2,7 @@
 
 namespace BodyBuildingApp.Controllers
 {
-    [Route("/api/Target")]
+    [Route("/api/target")]
     [ApiController]
     public class TargetController : Controller
     {

@@ -20,6 +20,19 @@ namespace BodyBuildingApp.Controllers
         {
             this.dailyFoodService = dailyFoodService;
         }
+        
+        [HttpGet]
+        public IActionResult GetAllDailyFood()
+        {
+           if(dailyFoodService.GetDailyFoodList == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(dailyFoodService.GetDailyFoodList());
+            }
+        }
 
         [HttpGet("{id}")]
         public IActionResult GetDailyFoodbyID(string id)

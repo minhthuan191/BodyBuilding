@@ -20,6 +20,18 @@ namespace BodyBuildingApp.Controllers
         {
             this.dailyPlanService = dailyPlanService;
         }
+        [HttpGet]
+        public IActionResult GetAllDailyPlan()
+        {
+            if (dailyPlanService.GetDailyPlanList == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(dailyPlanService.GetDailyPlanList());
+            }
+        }
         [HttpGet("{id}")]
         public IActionResult GetDailybyPlanID(string id)
         {

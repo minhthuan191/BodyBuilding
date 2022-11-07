@@ -31,6 +31,18 @@ namespace BodyBuildingApp.Controllers
                 return exerciseService.GetExercisebyId(id);
             }
         }
+        [HttpGet("name")]
+        public Exercise GetExercisebyName(string name)
+        {
+            if (exerciseService.GetExercisebyName(name) == null)
+            {
+                throw new Exception(" Id not found or not exist");
+            }
+            else
+            {
+                return exerciseService.GetExercisebyName(name);
+            }
+        }
         [HttpGet("list")]
         public (List<Exercise>,int) GetListExercise(int pageIndex, int pageSize)
         {
@@ -91,6 +103,7 @@ namespace BodyBuildingApp.Controllers
             var exercise = new Exercise();
 
             exercise.ExerciseId = Guid.NewGuid().ToString();
+            exercise.ExerciseName = body.ExeciseName;
             exercise.Set = body.Set;
             exercise.Rep = body.Rep;
             exercise.CaloBurn = body.CaloBurn;

@@ -7,7 +7,7 @@ namespace BodyBuildingApp.Service.Interface
     {
         public Exercise GetExercisebyId(string id);
         public Exercise GetExercisebyName(string name);
-        public (List<Exercise>,int) GetListExercise(int pageIndex, int pageSize);
+        public List<Exercise> GetListExercise();
 
         public Exercise GetExercisebyBodyPart(string bodyPart);
 

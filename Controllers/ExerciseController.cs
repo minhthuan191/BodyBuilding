@@ -44,15 +44,15 @@ namespace BodyBuildingApp.Controllers
             }
         }
         [HttpGet("list")]
-        public (List<Exercise>,int) GetListExercise(int pageIndex, int pageSize)
+        public List<Exercise> GetListExercise()
         {
-            if (exerciseService.GetListExercise(pageIndex, pageSize) == (null, 0))
+            if (exerciseService.GetListExercise() == null)
             {
                 throw new Exception("Fail to get list");
             }
             else
             {
-                return exerciseService.GetListExercise(pageIndex,pageSize);
+                return exerciseService.GetListExercise();
             }
         }
 

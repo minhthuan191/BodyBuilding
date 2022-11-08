@@ -24,7 +24,7 @@ namespace BodyBuildingApp.Controllers
             this.CustomerService = customerService;
             this.AuthService = authService;
         }
-        [HttpGet]
+        [HttpGet("{id}")]
         public IActionResult GetcustomerbyID(string id)
         {
             if (CustomerService.GetCustomerById(id) == null)
@@ -33,11 +33,24 @@ namespace BodyBuildingApp.Controllers
             }
             else
             {
-                return View(CustomerService.GetCustomerById(id));
+                return Json(CustomerService.GetCustomerById(id));
                
             }
         }
-       
+        
+        [HttpGet("1/{id}")]
+        public Customer GetCustomerbyId(string id)
+        {
+            if (CustomerService.GetCustomerById(id) == null)
+            {
+                return null;
+            }
+            else
+            {
+                return CustomerService.GetCustomerById(id);
+            }
+        }
+
 
         [HttpPost("updateinfo")]
         public IActionResult HandleUpdateCustomerInfo([FromBody] UpdateCustomerDTO body)

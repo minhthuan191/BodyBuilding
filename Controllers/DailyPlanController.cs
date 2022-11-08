@@ -29,7 +29,7 @@ namespace BodyBuildingApp.Controllers
             }
             else
             {
-                return Ok(dailyPlanService.GetDailyPlanList());
+                return View(dailyPlanService.GetDailyPlanList());
             }
         }
         [HttpGet("{id}")]

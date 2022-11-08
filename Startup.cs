@@ -47,6 +47,7 @@ namespace BodyBuildingApp
             services.AddScoped<IInstructionService, InstructionService>();
             services.AddScoped<ITrainerService, TrainerService>();
             services.AddScoped<IDailyPlanService, DailyPlanService>();
+            services.AddScoped<IDailyFoodDetailService, DailyFoodDetailService>();
             services.AddScoped<IFoodDetailService, FoodDetailService>();
             //service end
 
@@ -59,6 +60,7 @@ namespace BodyBuildingApp
             services.AddScoped<BodyStatusRepository>();
             services.AddScoped<DailyPlanRepository>();
             services.AddScoped<FoodDetailRepository>();
+            services.AddScoped<DailyFoodDetailRepository>();
             //repo end
             services.AddScoped<AuthGuard>();
             services.AddScoped<AuthGuardTrainner>();

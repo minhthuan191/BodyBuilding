@@ -25,17 +25,18 @@ namespace BodyBuildingApp.Controllers
             this.AuthService = authService;
         }
         [HttpGet]
-        public Customer GetcustomerbyID(string id)
+        public IActionResult GetcustomerbyID(string id)
         {
-            if( CustomerService.GetCustomerById(id) == null)
+            if (CustomerService.GetCustomerById(id) == null)
             {
-                throw new Exception(" Id not found or not exist");
+                return NotFound();
             }
             else
             {
-                return CustomerService.GetCustomerById(id);
+                return Ok(CustomerService.GetCustomerById(id));
             }
         }
+       
 
         [HttpPost("updateinfo")]
         public IActionResult HandleUpdateCustomerInfo([FromBody] UpdateCustomerDTO body)

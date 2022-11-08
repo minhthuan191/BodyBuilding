@@ -33,7 +33,8 @@ namespace BodyBuildingApp.Controllers
             }
             else
             {
-                return Ok(CustomerService.GetCustomerById(id));
+                return View(CustomerService.GetCustomerById(id));
+               
             }
         }
        

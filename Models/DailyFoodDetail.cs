@@ -13,11 +13,6 @@ namespace BodyBuildingApp.Models
 
         [Required]
         [StringLength(50)]
-        [ForeignKey("DailyFood")]
-        public string DailyFoodId { set; get; }
-
-        [Required]
-        [StringLength(50)]
         [ForeignKey("FoodDetail")]
         public string FoodName { set; get; }
         [Required]

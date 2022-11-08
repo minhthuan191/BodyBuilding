@@ -37,6 +37,19 @@ namespace BodyBuildingApp.Controllers
                
             }
         }
+        [HttpGet("/list")]
+        public IActionResult GetListCustomer()
+        {
+            if (CustomerService.GetAllCustomers() == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Json(CustomerService.GetAllCustomers());
+               
+            }
+        }
         
         [HttpGet("1/{id}")]
         public Customer GetCustomerbyId(string id)

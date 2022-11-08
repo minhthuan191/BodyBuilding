@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Microsoft.AspNetCore.Http;
 
 namespace BodyBuildingApp.Controllers.DTO
 {
@@ -6,7 +7,7 @@ namespace BodyBuildingApp.Controllers.DTO
     {
         public string FoodName { get; set; }
         public float calories { get; set; }
-        public string image { get; set; }
+        public IFormFile image { get; set; }
     }
     public class AddFoodDetailDTOValidator : AbstractValidator<AddFoodDetailDTO>
     {

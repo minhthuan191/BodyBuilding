@@ -3,6 +3,7 @@ using BodyBuildingApp.Controllers.DTO;
 using BodyBuildingApp.Models;
 using BodyBuildingApp.Service.Interface;
 using BodyBuildingApp.Utils.Common;
+using BodyBuildingApp.Utils.Interface;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -15,10 +16,12 @@ namespace BodyBuildingApp.Controllers
     public class FoodDetailController : Controller
     {
         private readonly IFoodDetailService foodDetailService;
+        private readonly IUploadFileService UploadFileService;
 
-        public FoodDetailController(IFoodDetailService foodDetailService)
+        public FoodDetailController(IFoodDetailService foodDetailService, IUploadFileService uploadFileService)
         {
             this.foodDetailService = foodDetailService;
+            this.UploadFileService = uploadFileService;
         }
         [HttpGet("{name}")]
         public IActionResult GetFoodbyName(string name)
@@ -73,9 +76,16 @@ namespace BodyBuildingApp.Controllers
             Customer customer = (Customer)ViewData["user"];
             var fooddetail = new FoodDetail();
 
+            var imageUrl = this.UploadFileService.Upload(body.image);
+            if (imageUrl == null)
+            {
+                res.setErrorMessage("Upload file failed");
+                return new BadRequestObjectResult(res.getResponse());
+            }
+
             fooddetail.FoodName = body.FoodName;
             fooddetail.Calories = body.calories;
-            fooddetail.Image = body.image;
+            fooddetail.Image = imageUrl;
 
             this.foodDetailService.CreateFoodDetail(fooddetail);
             res.setMessage("Add food detail success!");

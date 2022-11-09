@@ -9,8 +9,8 @@ using System;
 
 namespace BodyBuildingApp.Controllers
 {
-    [ServiceFilter(typeof(AuthGuard))]
     [Route("/api/dailyPlan")]
+    [ServiceFilter(typeof(AuthGuard))]
     [ApiController]
     public class DailyPlanController : Controller
     {

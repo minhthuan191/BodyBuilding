@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.CompilerServices;
 
 namespace BodyBuildingApp.Models
 {
@@ -16,7 +17,7 @@ namespace BodyBuildingApp.Models
         public string ExerciseName { set; get; }
 
         [Required]
-        public int Set{ set; get; }
+        public string Set{ set; get; }
 
         [Required]
         [StringLength(50)]
@@ -27,10 +28,10 @@ namespace BodyBuildingApp.Models
         public string Step { set; get; }
 
         [Required]
-        public int Rep { set; get; }
+        public string Rep { set; get; }
 
 
         [Required]
-        public float CaloBurn { set; get; }
+        public string CaloBurn { set; get; }
     }
 }

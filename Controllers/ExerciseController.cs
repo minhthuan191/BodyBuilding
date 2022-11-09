@@ -103,7 +103,7 @@ namespace BodyBuildingApp.Controllers
             var exercise = new Exercise();
 
             exercise.ExerciseId = Guid.NewGuid().ToString();
-            exercise.ExerciseName = body.ExeciseName;
+            exercise.ExerciseName = body.ExerciseName;
             exercise.Set = body.Set;
             exercise.Rep = body.Rep;
             exercise.CaloBurn = body.CaloBurn;

@@ -24,19 +24,7 @@ namespace BodyBuildingApp.Controllers
             this.CustomerService = customerService;
             this.AuthService = authService;
         }
-        [HttpGet("{id}")]
-        public IActionResult GetcustomerbyID(string id)
-        {
-            if (CustomerService.GetCustomerById(id) == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                return Json(CustomerService.GetCustomerById(id));
-               
-            }
-        }
+   
         [HttpGet("/list")]
         public IActionResult GetListCustomer()
         {
@@ -50,17 +38,18 @@ namespace BodyBuildingApp.Controllers
                
             }
         }
-        
-        [HttpGet("1/{id}")]
-        public Customer GetCustomerbyId(string id)
+
+        [HttpGet("{id}")]
+        public ActionResult<Customer> GetCustomer(string id)
         {
-            if (CustomerService.GetCustomerById(id) == null)
+            var customer = CustomerService.GetCustomerById(id);
+            if (customer == null)
             {
-                return null;
+                return NotFound();
             }
             else
             {
-                return CustomerService.GetCustomerById(id);
+                return customer;
             }
         }
 

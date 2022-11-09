@@ -26,5 +26,9 @@ namespace BodyBuildingApp.Models
         [ForeignKey("Customer")]
         public string UserId { set; get; }
 
-}
+        public override string ToString()
+        {
+            return "BodyStatusId = " + BodyStatusId + ", Weight = " + Weight + "Height = " + Height + "Date = " + Date + " userId = " + UserId;
+        }
+    }
 }

@@ -25,7 +25,7 @@ namespace BodyBuildingApp.Controllers
             this.AuthService = authService;
         }
    
-        [HttpGet("/list")]
+        [HttpGet("list")]
         public IActionResult GetListCustomer()
         {
             if (CustomerService.GetAllCustomers() == null)

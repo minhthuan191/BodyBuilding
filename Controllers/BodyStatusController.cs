@@ -23,16 +23,15 @@ namespace BodyBuildingApp.Controllers
             this.bodyStatusService = bodyStatusService;
         }
         [HttpGet]
-        public BodyStatus GetBodyStatusbyId(string id)
+        public IActionResult GetBodyStatusbyId(string id)
         {
-            if (bodyStatusService.GetBodyStatusByBodyID(id) == null)
-            {
-                throw new Exception(" Id not found or not exist");
-            }
-            else
-            {
-                return bodyStatusService.GetBodyStatusByBodyID(id);
-            }
+            var res = new ServerApiResponse<string>();
+
+            BodyStatus bodyStatus = bodyStatusService.GetBodyStatusByBodyID(id);
+            res.data = bodyStatus.ToString();
+            res.setMessage("Get success");
+            return new ObjectResult(res.getResponse()) ;
+            
         }
         [HttpPut]
         public IActionResult HandleUpdateBodyStatus([FromBody]AddBodyStatusDTO body)

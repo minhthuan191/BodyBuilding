@@ -30,7 +30,7 @@ namespace BodyBuildingApp.Controllers
             }
             else
             {
-                return View(dailyFoodDetailService.GetAllDailyFoodDetail());
+                return Ok(dailyFoodDetailService.GetAllDailyFoodDetail());
             }
         }
 
@@ -43,7 +43,7 @@ namespace BodyBuildingApp.Controllers
             }
             else
             {
-                return View(dailyFoodDetailService.GetDailyFoodDetailId(id));
+                return Ok(dailyFoodDetailService.GetDailyFoodDetailId(id));
             }
         }
 

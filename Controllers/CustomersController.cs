@@ -55,8 +55,6 @@ namespace BodyBuildingApp.Controllers
                 customer.Email = customer.Email.ToString();
                 customer.Phone = customer.Phone.ToString();
                 customer.Name = customer.Name.ToString();
-                customer.TargetId = customer.TargetId.ToString();
-                customer.BodyStatusId = customer.BodyStatusId.ToString();
                 return customer;
             }
         }

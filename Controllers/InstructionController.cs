@@ -50,7 +50,7 @@ namespace BodyBuildingApp.Controllers
             foreach (var exerciseId in list)
             {
                 Exercise exercise = this.ExerciseService.GetExercisebyId(exerciseId);
-                // += exercise.CaloBurn;
+                totalCalo += exercise.CaloBurn;
                 //totalTime += (float)((exercise.Rep * 1.5)*exercise.Set);
             }
             

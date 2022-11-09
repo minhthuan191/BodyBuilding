@@ -32,6 +32,6 @@ namespace BodyBuildingApp.Models
 
 
         [Required]
-        public string CaloBurn { set; get; }
+        public float CaloBurn { set; get; }
     }
 }

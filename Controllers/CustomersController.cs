@@ -39,7 +39,7 @@ namespace BodyBuildingApp.Controllers
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet]
         public ActionResult<Customer> GetCustomer(string id)
         {
             var customer = CustomerService.GetCustomerById(id);
@@ -49,6 +49,12 @@ namespace BodyBuildingApp.Controllers
             }
             else
             {
+                customer.UserId = customer.UserId.ToString();
+                customer.Gender = customer.Gender.ToString();
+                customer.Address = customer.Address.ToString();
+                customer.Email = customer.Email.ToString();
+                customer.Phone = customer.Phone.ToString();
+                customer.Name = customer.Name.ToString();
                 return customer;
             }
         }

@@ -52,5 +52,15 @@ namespace BodyBuildingApp.Service
         {
                     return insrepo.UpdateInstruction(instruction);
         }
+
+        public List<InstructionDetail> GetInstructionDetail(string instructionId)
+        {
+            return insrepo.GetInstructionDetail(instructionId);
+        }
+
+        public List<InstructionDetail> GetAllInstructions()
+        {
+            return insrepo.GetAllInstructions();
+        }
     }
 }

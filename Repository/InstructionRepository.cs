@@ -59,22 +59,22 @@ namespace BodyBuildingApp.Repository
             return (result, instructions.Count);
         }
 
-        public (List<InstructionDetail>, int) GetOrderDetail(string instructionId, int pageIndex, int pageSize)
+        public List<InstructionDetail> GetInstructionDetail(string instructionId)
         {
             List<InstructionDetail> instructionDetail = this.DBContext.InstructionDetail.Where(x => x.InstructionId == instructionId).ToList();
             foreach (var exercise in instructionDetail)
             {
                 this.DBContext.Exercise.Where(item => item.ExerciseId == exercise.ExerciseId).Load();
             }
-            var pagelist = (List<InstructionDetail>)instructionDetail.Take((pageIndex + 1) * pageSize).Skip(pageIndex * pageSize).ToList();
-            return (pagelist, instructionDetail.Count);
+            var pagelist = (List<InstructionDetail>)instructionDetail.ToList();
+            return pagelist;
         }
 
-        public (List<InstructionDetail>, int) GetAllOrders(int pageIndex, int pageSize)
+        public List<InstructionDetail> GetAllInstructions()
         {
             List<InstructionDetail> orders = this.DBContext.InstructionDetail.ToList();
-            var result = orders.Take((pageIndex + 1) * pageSize).Skip(pageIndex * pageSize).ToList();
-            return (result, orders.Count);
+            var result = orders.ToList();
+            return result;
         }
     }
 }

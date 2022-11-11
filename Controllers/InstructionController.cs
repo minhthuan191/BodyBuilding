@@ -7,10 +7,12 @@ using FluentValidation.Results;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 
 namespace BodyBuildingApp.Controllers
 {
     [Route("/api/instruction")]
+    [ServiceFilter(typeof(AuthGuard))]
     [ApiController]
     public class InstructionController : Controller
     {
@@ -19,16 +21,17 @@ namespace BodyBuildingApp.Controllers
         private readonly IExerciseService ExerciseService;
         private readonly IInstructionService InstructionService;
         private readonly IInstructionDetailService InstructionDetailService;
-        public InstructionController(IExerciseSessionService exerciseSessionService, IInstructionService instructionService, IExerciseService exerciseService, IInstructionDetailService instructionDetailService)
+        private readonly IDailyPlanService DailyPlanService ;
+        public InstructionController(IExerciseSessionService exerciseSessionService, IInstructionService instructionService, IExerciseService exerciseService, IInstructionDetailService instructionDetailService, IDailyPlanService dailyPlanService)
         {
             this.ExerciseSessionService = exerciseSessionService;
             this.InstructionService = instructionService;
             this.ExerciseService = exerciseService;
             this.InstructionDetailService = instructionDetailService;
+            this.DailyPlanService = dailyPlanService;
         }
 
         [HttpPost("")]
-        [ServiceFilter(typeof(AuthGuard))]
         public IActionResult CreateInstruction([FromBody] CreateInstructionDTO body)
         {
             var res = new ServerApiResponse<string>();
@@ -82,6 +85,46 @@ namespace BodyBuildingApp.Controllers
             this.HttpContext.Session.Remove(ExerciseSession);
             res.setMessage("Create instruction success");
             return new ObjectResult(res.getResponse());
+        }
+        [HttpGet()]
+        public IActionResult GetInstruction()
+        {
+            var res = new ServerApiResponse<string>();
+            var user = (Customer)this.ViewData["user"];
+            var dailyPlan = this.DailyPlanService.GetDailybyUserID(user.UserId);
+            var instruction = this.InstructionService.GetInstructionbyID(dailyPlan.InstructionId);
+            if(dailyPlan == null || instruction == null)
+            {
+                res.setMessage("Can not get instruction");
+                return new NotFoundObjectResult(res.getResponse());
+            }
+
+            return new ObjectResult(instruction);
+        }
+
+        [HttpGet("detail")]
+        
+        public IActionResult InstructionDetail(string id)
+        {
+            var res = new ServerApiResponse<string>();
+            List<Exercise> listExercise = new List<Exercise>();
+            var items = this.InstructionService.GetInstructionDetail(id);
+            if(items == null)
+            {
+                res.setMessage("Can not instruction detail");
+                return new NotFoundObjectResult(res.getResponse());
+            }
+            foreach(var item in items)
+            {
+                var exercise = ExerciseService.GetExercisebyId(item.ExerciseId);
+                if(exercise == null)
+                {
+                    res.setMessage("Can not get this exercise");
+                    return new NotFoundObjectResult(res.getResponse());
+                }
+                listExercise.Add(exercise);
+            }
+            return new ObjectResult(listExercise);
         }
     }
 }

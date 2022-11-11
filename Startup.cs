@@ -76,7 +76,7 @@ namespace BodyBuildingApp
             services.AddCors(options => {
                 options.AddDefaultPolicy(
                     builder => {
-                        builder.WithOrigins("http://localhost:3000", "https://localhost:5001")
+                        builder.SetIsOriginAllowed(origin => true)
                                             .AllowAnyHeader()
                                             .AllowAnyMethod().AllowCredentials();
                     });

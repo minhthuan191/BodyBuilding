@@ -14,5 +14,9 @@ namespace BodyBuildingApp.Service.Interface
         public bool UpdateInstruction(Instruction instruction);
 
         public bool DeleteInstruction(string insId);
+
+        public List<InstructionDetail> GetInstructionDetail(string instructionId);
+
+        public List<InstructionDetail> GetAllInstructions();
     }
 }

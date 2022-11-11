@@ -5,6 +5,7 @@ namespace BodyBuildingApp.Service.Interface
 {
     public interface ITargetService
     {
+        public Target GetTargetbyUserId(string userId);
         public Target GetTargetbyID(string targetId);
         public List<Target> GetAllTarget();
 

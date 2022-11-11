@@ -38,16 +38,5 @@ namespace BodyBuildingApp.Models
         [Required]
         public string Role { set; get; }
     
-
-        [StringLength(50)]
-        [ForeignKey("Target")]
-        public string TargetId { get; set; }
-
-
-
-        [StringLength(50)]
-        [ForeignKey("BodyStatus")]
-        public string BodyStatusId { get; set; }
-
     }
 }

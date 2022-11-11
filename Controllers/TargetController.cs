@@ -30,6 +30,19 @@ namespace BodyBuildingApp.Controllers
                 return TargetService.GetTargetbyID(id);
             }
         }
+        [HttpGet("info")]
+        public ActionResult<Target> GetBodyStatusCurrentUser()
+        {
+            Target target = (Target)this.ViewData["user"];
+
+            var curentCustomer = TargetService.getTarbyUserid(target.userId);
+            if (curentCustomer == null)
+            {
+                return NotFound();
+            }
+            return curentCustomer;
+
+        }
 
         [HttpGet("list")]
         public List<Target> GetListTarget()

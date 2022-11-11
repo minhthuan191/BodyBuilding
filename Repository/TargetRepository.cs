@@ -22,6 +22,12 @@ namespace BodyBuildingApp.Repository
             if (target == null) return null;
             return target;
         }
+        public Target GetTargetrByUserId(string userId)
+        {
+            Target target = this.DBContext.Target.FirstOrDefault(item => item.UserId == userId);
+            if (target == null) return null;
+            return target;
+        }
         public List<Target> GetAllTarget()
         {
             List<Target> listTarget = this.DBContext.Set<Target>().ToList<Target>();

@@ -36,6 +36,11 @@ namespace BodyBuildingApp.Service
             return tgrepo.GetTargetbyID(targetId);
         }
 
+        public Target GetTargetbyUserId(string userId)
+        {
+            return tgrepo.GetTargetrByUserId(userId);
+        }
+
         public bool UpdateTarget(Target target)
         {
 

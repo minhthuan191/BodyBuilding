@@ -15,5 +15,8 @@ namespace BodyBuildingApp.Models
         [StringLength(50)]
         public string TargetName { set; get; }
 
+        [StringLength(50)]
+        public string UserId { set; get; }
+
     }
 }

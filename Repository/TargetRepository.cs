@@ -4,10 +4,11 @@ using BodyBuildingApp.Utils;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 
 namespace BodyBuildingApp.Repository
 {
-    public class TargetRepository 
+    public class TargetRepository
     {
         private readonly DBContext DBContext;
 
@@ -18,36 +19,30 @@ namespace BodyBuildingApp.Repository
         public Target GetTargetbyID(string targetId)
         {
             Target target = this.DBContext.Target.FirstOrDefault(item => item.TargetId == targetId);
-            if(target== null) return null;
+            if (target == null) return null;
             return target;
+        }
+        public List<Target> GetAllTarget()
+        {
+            List<Target> listTarget = this.DBContext.Set<Target>().ToList<Target>();
+            return listTarget;
         }
         public bool CreateTarget(Target target)
         {
-            this.DBContext.Entry(target).State = EntityState.Modified;
-            if(GetTargetbyID(target.TargetId) != null)
-            {
-                this.DBContext.Target.Add(target);
-                this.DBContext.SaveChanges();
-                return true;
-            }
-            else
-            {
-                throw new Exception("error at repository");
-            }
+            this.DBContext.Target.Add(target);
+            this.DBContext.SaveChanges();
+            return true;
+
         }
         public bool UpdateTarget(Target target)
         {
-            this.DBContext.Entry(target).State = EntityState.Modified;
-            if (GetTargetbyID(target.TargetId) == null) throw new Exception("error at repository");
             this.DBContext.Update(target);
             this.DBContext.SaveChanges();
             return true;
-        } 
+        }
 
-        public bool DeleteTarget(string targetId)
+        public bool DeleteTarget(Target target)
         {
-            var target = GetTargetbyID(targetId);
-            if (target == null) throw new Exception("error at repository");
             this.DBContext.Target.Remove(target);
             this.DBContext.SaveChanges();
             return true;

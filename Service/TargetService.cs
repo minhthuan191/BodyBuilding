@@ -2,6 +2,7 @@
 using BodyBuildingApp.Repository;
 using BodyBuildingApp.Service.Interface;
 using System;
+using System.Collections.Generic;
 
 namespace BodyBuildingApp.Service
 {
@@ -16,74 +17,29 @@ namespace BodyBuildingApp.Service
 
         public bool CreateTarget(Target target)
         {
-            if (target == null)
-            {
-                return false;
-            }
-            else
-            {
-                return tgrepo.CreateTarget(target);
-            }
+            return tgrepo.CreateTarget(target);
+
         }
 
-        public bool DeleteTarget(string targetId)
+        public bool DeleteTarget(Target target)
         {
-            try
-            {
-                if (targetId == null)
-                {
-                    return false;
-                }
-                else
-                {
-                    return tgrepo.DeleteTarget(targetId);
-                }
+            return tgrepo.DeleteTarget(target);
+        }
 
-            }
-            catch(Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+        public List<Target> GetAllTarget()
+        {
+            return tgrepo.GetAllTarget();
         }
 
         public Target GetTargetbyID(string targetId)
         {
-            try
-            {
-                if (targetId == null || tgrepo.GetTargetbyID(targetId) == null)
-                {
-                    return null ;
-                }
-                else
-                {
-                    return tgrepo.GetTargetbyID(targetId);
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            return tgrepo.GetTargetbyID(targetId);
         }
 
         public bool UpdateTarget(Target target)
         {
-            try
-            {
-                if (target == null)
-                {
-                    return false;
-                }
-                else
-                {
-                    return tgrepo.UpdateTarget(target);
-                }
 
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            return tgrepo.UpdateTarget(target);
         }
     }
 }

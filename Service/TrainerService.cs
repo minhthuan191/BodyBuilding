@@ -2,6 +2,7 @@
 using BodyBuildingApp.Repository;
 using BodyBuildingApp.Service.Interface;
 using System;
+using System.Collections.Generic;
 
 namespace BodyBuildingApp.Service
 {
@@ -10,6 +11,11 @@ namespace BodyBuildingApp.Service
     {
         private readonly TrainerRepository tnrepo;
 
+
+        public List<Trainer> GetAllTrainer()
+        {
+            return tnrepo.GetListTrainer();
+        }
         public TrainerService(TrainerRepository tnrepo)
         {
             this.tnrepo = tnrepo;
@@ -18,12 +24,12 @@ namespace BodyBuildingApp.Service
         public bool CreateTrainer(Trainer trainer)
         {
             return tnrepo.CreateTrainer(trainer);
-            
+
         }
 
-        public bool DeleteTrainer(Trainer trainer)
+        public bool DeleteTrainer(string id)
         {
-            return tnrepo.DeleteTrainer(trainer);
+            return tnrepo.DeleteTrainer(id);
         }
 
         public Trainer GetTrainerById(string trainerId)
@@ -34,7 +40,7 @@ namespace BodyBuildingApp.Service
         public bool UpdateTrainer(Trainer trainer)
         {
             return tnrepo.UpdateTrainer(trainer);
-       
+
         }
 
         public Trainer GetTrainerByPhone(string phone)

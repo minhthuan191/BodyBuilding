@@ -35,7 +35,7 @@ namespace BodyBuildingApp.Controllers
         {
             Target target = (Target)this.ViewData["user"];
 
-            var curentCustomer = TargetService.getTarbyUserid(target.userId);
+            var curentCustomer = TargetService.GetTargetbyUserId(target.UserId);
             if (curentCustomer == null)
             {
                 return NotFound();

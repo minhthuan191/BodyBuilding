@@ -23,7 +23,7 @@ namespace BodyBuildingApp.Controllers
             this.bodyStatusService = bodyStatusService;
         }
 
-        [HttpGet("info")]
+        [HttpGet("bodyinfo")]
         public ActionResult<BodyStatus> GetCurrentCustomer()
         {
             Customer Customer = (Customer)this.ViewData["user"];

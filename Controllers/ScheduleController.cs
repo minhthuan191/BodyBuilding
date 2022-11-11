@@ -34,6 +34,19 @@ namespace BodyBuildingApp.Controllers
             }
         }
 
+        [HttpGet("userId")]
+        public ActionResult<Schedule> GetDailybyUserId()
+        {
+            Customer Customer = (Customer)this.ViewData["user"];
+
+            var Schedule = scheduleService.GetScheduleByUserID(Customer.UserId);
+            if (Schedule == null)
+            {
+                return NotFound();
+            }
+            return Schedule;
+        }
+
         [HttpPut("{name}")]
         public IActionResult HandleUpdateFoodDetail([FromBody] UpdateScheduleDTO body, string id)
         {

@@ -44,6 +44,18 @@ namespace BodyBuildingApp.Controllers
                 return Ok(dailyPlanService.GetDailybyPlanID(id));
             }
         }
+        [HttpGet("userId")]
+        public ActionResult<DailyPlan> GetDailybyUserId()
+        {
+            Customer Customer = (Customer)this.ViewData["user"];
+
+            var dailyPlan = dailyPlanService.GetDailybyUserID(Customer.UserId);
+            if (dailyPlan == null)
+            {
+                return NotFound();
+            }
+            return dailyPlan;
+        }
 
         [HttpPut("{id}")]
         public IActionResult HandleUpdateDailyPlan([FromBody] UpdateDailyPlanDTO body, string id)

@@ -30,17 +30,18 @@ namespace BodyBuildingApp.Controllers
                 return TargetService.GetTargetbyID(id);
             }
         }
+
         [HttpGet("info")]
         public ActionResult<Target> GetBodyStatusCurrentUser()
         {
-            Target target = (Target)this.ViewData["user"];
+            Customer Customer = (Customer)this.ViewData["user"];
 
-            var curentCustomer = TargetService.GetTargetbyUserId(target.UserId);
-            if (curentCustomer == null)
+            var target = TargetService.GetTargetbyUserId(Customer.UserId);
+            if (target == null)
             {
                 return NotFound();
             }
-            return curentCustomer;
+            return target;
 
         }
 
@@ -97,10 +98,13 @@ namespace BodyBuildingApp.Controllers
                 return new BadRequestObjectResult(res.getResponse());
             };
 
+            Customer Customer = (Customer)this.ViewData["user"];
+
             var Target = new Target();
 
             Target.TargetId = Guid.NewGuid().ToString();
             Target.TargetName = body.TargetName;
+            Target.UserId = Customer.UserId;
 
             this.TargetService.CreateTarget(Target);
             res.setMessage("Add target success!");

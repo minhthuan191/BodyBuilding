@@ -22,6 +22,22 @@ namespace BodyBuildingApp.Controllers
         {
             this.bodyStatusService = bodyStatusService;
         }
+
+        [HttpGet("info")]
+        public ActionResult<BodyStatus> GetCurrentCustomer()
+        {
+            Customer Customer = (Customer)this.ViewData["user"];
+
+
+            var bodyStatus = bodyStatusService.GetBodyStatusByUserId(Customer.UserId);
+            if (bodyStatus == null)
+            {
+                return NotFound();
+            }
+            return bodyStatus;
+
+        }
+
         [HttpGet]
         public IActionResult GetBodyStatusbyId(string id)
         {

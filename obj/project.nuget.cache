@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vZ62tat3DrxKqqGN3cD1didCOx3J6g7OxyEiOiM2Ty7mp13paHOwjmQH2FnDB11oBx/gKNcnr8RjBKhOQo2W/A==",
+  "dgSpecHash": "6UZ/1c9YzFjyN9+1Rc1TnjIiZyS+7/xdBgbWuc20uL73RDDaw4raoZcJchAEUEE4TXH7PvbeLgB2FVSoEHj/FQ==",
   "success": true,
-  "projectFilePath": "D:\\MinhThuan\\SWD\\BodyBuildingApp\\7\\BodyBuilding\\BodyBuildingApp.csproj",
+  "projectFilePath": "D:\\MinhThuan\\SWD\\BodyBuildingApp\\8\\BodyBuilding\\BodyBuildingApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\LENOVO-PC\\.nuget\\packages\\bcrypt.net-next\\4.0.2\\bcrypt.net-next.4.0.2.nupkg.sha512",
     "C:\\Users\\LENOVO-PC\\.nuget\\packages\\fluentvalidation\\10.3.6\\fluentvalidation.10.3.6.nupkg.sha512",

@@ -9,7 +9,7 @@ namespace BodyBuildingApp.Models
         [Key]
         [Required]
         [StringLength(50)]
-        public string BodyStatusId { set; get; }
+        public string BodyStatusId { set; get; } 
 
         [Required]
         public float Weight { set; get; }

@@ -28,10 +28,13 @@ namespace BodyBuildingApp.Controllers
             var res = new ServerApiResponse<string>();
 
             BodyStatus bodyStatus = bodyStatusService.GetBodyStatusByBodyID(id);
-            res.data = bodyStatus.ToString();
-            res.setMessage("Get success");
-            return new ObjectResult(res.getResponse()) ;
-            
+            if (bodyStatus == null)
+            {
+                res.setErrorMessage("Can not find this body ID");
+                return new NotFoundObjectResult(res.getResponse());
+            }
+            return new ObjectResult(bodyStatus);
+
         }
         [HttpPut]
         public IActionResult HandleUpdateBodyStatus([FromBody]AddBodyStatusDTO body)

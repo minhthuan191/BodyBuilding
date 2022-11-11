@@ -39,6 +39,20 @@ namespace BodyBuildingApp.Controllers
             }
         }
 
+        [HttpGet("info")]
+        public ActionResult<Customer> GetCurrentCustomer()
+        {
+            Customer Customer = (Customer)this.ViewData["user"];
+
+            var curentCustomer = CustomerService.GetCustomerById(Customer.UserId);
+            if (curentCustomer == null)
+            {
+                return NotFound();
+            }
+            return curentCustomer;
+
+        }
+
         [HttpGet]
         public ActionResult<Customer> GetCustomer(string id)
         {
@@ -72,7 +86,7 @@ namespace BodyBuildingApp.Controllers
                 return new BadRequestObjectResult(res.getResponse());
             }
 
-            Customer Customer = (Customer)this.ViewData["Customer"];
+            Customer Customer = (Customer)this.ViewData["user"];
 
             Customer.Name = body.Name;
             Customer.Phone = body.Phone;
@@ -95,7 +109,7 @@ namespace BodyBuildingApp.Controllers
                 return new BadRequestObjectResult(res.getResponse());
             }
 
-            Customer Customer = (Customer)this.ViewData["Customer"];
+            Customer Customer = (Customer)this.ViewData["user"];
             bool checkPassword = AuthService.ComparePassword(body.Password, Customer.Password);
             if (!checkPassword)
             {

@@ -33,20 +33,13 @@ namespace BodyBuildingApp.Auth
             try
             {
                 var cookies = new Dictionary<string, string>();
-                var values = ((string)context.HttpContext.Request.Headers["Cookie"]).Split(',', ';');
-
-
-                foreach (var parts in values)
-                {
-                    var cookieArray = parts.Trim().Split('=');
-                    cookies.Add(cookieArray[0], cookieArray[1]);
-                }
-
-                if (!cookies.TryGetValue("auth-token", out _))
+                var accessToken = ((string)context.HttpContext.Request.Headers["auth-token"]);
+                if (accessToken == null)
                 {
                     return false;
                 }
-                var token = this.JWTService.VerifyToken(cookies["auth-token"]).Split(";");
+
+                var token = this.JWTService.VerifyToken(accessToken).Split(";");
 
                 if (token[0] == null)
                 {

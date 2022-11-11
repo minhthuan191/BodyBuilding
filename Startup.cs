@@ -73,12 +73,14 @@ namespace BodyBuildingApp
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BodyBuildingApp", Version = "v1" });
             });
 
-            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
-            {
-                builder.AllowAnyOrigin()
-                       .AllowAnyMethod()
-                       .AllowAnyHeader();
-            }));
+            services.AddCors(options => {
+                options.AddDefaultPolicy(
+                    builder => {
+                        builder.WithOrigins("http://localhost:3000", "https://localhost:5001")
+                                            .AllowAnyHeader()
+                                            .AllowAnyMethod().AllowCredentials();
+                    });
+            });
 
 
         }
@@ -92,14 +94,13 @@ namespace BodyBuildingApp
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BodyBuildingApp v1"));
             //}
-
+            app.UseCors();
             app.UseHttpsRedirection();
             app.UseSession();
             app.UseRouting();
 
+            app.UseRouting();
             app.UseAuthorization();
-
-            app.UseCors("MyPolicy");
 
             app.UseEndpoints(endpoints =>
             {

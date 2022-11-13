@@ -101,7 +101,22 @@ namespace BodyBuildingApp.Controllers
 
             return new ObjectResult(instruction);
         }
-           [HttpGet("instructiondetaillist")]
+        [HttpPost("createinstruction_detail")]
+        public IActionResult CreateIntrucstionDetail(InstructionDetail instruction)
+        {
+            var res = new ServerApiResponse<string>();
+            if (InstructionDetailService.CreateInstructionDetail(instruction) == false)
+            {
+                res.setErrorMessage("Create failed");
+                return new BadRequestObjectResult(res.getResponse());
+            }
+            InstructionDetailService.CreateInstructionDetail(instruction);
+            res.setMessage("Add instruction detail success!");
+            return new ObjectResult(res.getResponse());
+
+
+        }
+        [HttpGet("instructiondetaillist")]
         public List<InstructionDetail> GetAllDailyFood(string id)
         {
             if (InstructionDetailService.GetAllInstructionDetailByInstructionId(id) == null)

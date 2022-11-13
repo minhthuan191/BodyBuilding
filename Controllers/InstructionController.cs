@@ -101,6 +101,18 @@ namespace BodyBuildingApp.Controllers
 
             return new ObjectResult(instruction);
         }
+           [HttpGet("instructiondetaillist")]
+        public List<InstructionDetail> GetAllDailyFood(string id)
+        {
+            if (InstructionDetailService.GetAllInstructionDetailByInstructionId(id) == null)
+            {
+                throw new Exception("Fail to get list");
+            }
+            else
+            {
+                return InstructionDetailService.GetAllInstructionDetailByInstructionId(id);
+            }
+        }
 
         [HttpGet("detail")]
         

@@ -30,7 +30,7 @@ namespace BodyBuildingApp.Controllers
         {
             if (CustomerService.GetAllCustomers() == null)
             {
-                return NotFound();
+                 throw new Exception("Fail to get list");
             }
             else
             {

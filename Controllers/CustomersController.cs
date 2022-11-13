@@ -12,7 +12,8 @@ using BodyBuildingApp.Service;
 namespace BodyBuildingApp.Controllers
 {
     [Route("/api/customer")]
-    [ServiceFilter(typeof(AuthGuard))]
+    
+    
     [ApiController]
     public class CustomersController : Controller
     {
@@ -26,6 +27,7 @@ namespace BodyBuildingApp.Controllers
         }
    
         [HttpGet("list")]
+       
         public IActionResult GetListCustomer()
         {
             if (CustomerService.GetAllCustomers() == null)

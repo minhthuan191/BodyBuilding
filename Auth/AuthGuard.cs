@@ -14,11 +14,13 @@ namespace BodyBuildingApp.Auth
     {
         private readonly IJwtService JWTService;
         private readonly ICustomerService CustomerService;
-        public AuthGuard(IJwtService jwtService, ICustomerService CustomerService)
+        private readonly ITrainerService TrainerService;
+        public AuthGuard(IJwtService jwtService, ICustomerService CustomerService, ITrainerService trainerService)
         {
 
             this.JWTService = jwtService;
             this.CustomerService = CustomerService;
+            this.TrainerService = trainerService;
         }
 
         public void OnActionExecuted(ActionExecutedContext context)
@@ -46,9 +48,21 @@ namespace BodyBuildingApp.Auth
                     return false;
                 }
                 var user = this.CustomerService.GetCustomerById(token[0]);
+                
                 if (user == null)
                 {
-                    return false;
+                    var trainer = this.TrainerService.GetTrainerById(token[0]);
+
+                    if (trainer == null)
+                    {
+                        return false;
+                    }
+
+                    Controller controller1 = context.Controller as Controller;
+                    controller1.ViewData["trainer"] = user;
+
+                    // check user's role
+
                 }
 
                 Controller controller = context.Controller as Controller;

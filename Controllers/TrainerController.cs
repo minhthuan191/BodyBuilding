@@ -31,6 +31,19 @@ namespace BodyBuildingApp.Controllers
                 return Ok(list);
             }
         }
+        [HttpGet("info")]
+        public ActionResult<Trainer> GetCurrentTrainer()
+        {
+            Trainer Trainer = (Trainer)this.ViewData["trainer"];
+
+            var curentTrainer = trainerService.GetTrainerById(Trainer.TrainerId);
+            if (curentTrainer == null)
+            {
+                return NotFound();
+            }
+            return curentTrainer;
+
+        }
         [HttpGet("by_Id")]
         public ActionResult<Trainer> GetTrainerById(string id)
         {

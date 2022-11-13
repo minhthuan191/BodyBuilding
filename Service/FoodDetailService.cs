@@ -53,7 +53,6 @@ namespace BodyBuildingApp.Service
         {
             
                     return fdrepo.UpdateFoodDetail(foodDetail);
-            
         }
     }
 }

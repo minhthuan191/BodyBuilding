@@ -12,8 +12,8 @@ using BodyBuildingApp.Service;
 namespace BodyBuildingApp.Controllers
 {
     [Route("/api/customer")]
-    
-    
+    [ServiceFilter(typeof(AuthGuard))]
+
     [ApiController]
     public class CustomersController : Controller
     {

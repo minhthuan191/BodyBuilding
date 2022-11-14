@@ -52,6 +52,20 @@ namespace BodyBuildingApp.Controllers
             return new ObjectResult(bodyStatus);
 
         }
+        [HttpGet("byUserId")]
+        public IActionResult GetbyUserId(string userId)
+        {
+            var res = new ServerApiResponse<string>();
+
+            BodyStatus bodyStatus = bodyStatusService.GetBodyStatusByUserId(userId);
+            if (bodyStatus == null)
+            {
+                res.setErrorMessage("Can not find this body ID");
+                return new NotFoundObjectResult(res.getResponse());
+            }
+            return new ObjectResult(bodyStatus);
+
+        }
         [HttpPut]
         public IActionResult HandleUpdateBodyStatus([FromBody]AddBodyStatusDTO body)
         {
